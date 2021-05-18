@@ -16,6 +16,7 @@
         <module>cornerstone-system</module>
         <module>cornerstone-generator</module>
         <module>cornerstone-framework</module>
+        <module>cornerstone-file</module>
     </modules>
 
     <properties>
@@ -121,6 +122,12 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>${org.projectlombok.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>${hutool.version}</version>
         </dependency>
     </dependencies>
 
