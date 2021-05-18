@@ -9,7 +9,7 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>cornerstone-common</module>
+        <module>cornerstone-admin</module>
         <module>cornerstone-config</module>
         <module>cornerstone-quartz</module>
         <module>cornerstone-web</module>
@@ -33,6 +33,7 @@
         <hutool.version>5.6.5</hutool.version>
         <mybatis-plus.version>3.4.2</mybatis-plus.version>
         <flywaydb.version>7.9.0</flywaydb.version>
+        <guava.version>30.0-jre</guava.version>
     </properties>
 
     <dependencyManagement>
@@ -114,6 +115,12 @@
                 <artifactId>flyway-core</artifactId>
                 <version>${flywaydb.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -127,7 +134,11 @@
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
-            <version>${hutool.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
         </dependency>
     </dependencies>
 
