@@ -7,17 +7,17 @@ package com.space.cornerstone.framework.core.enums;
  * @Description TODO
  * @createTime 2021年05月18日 08:38:00
  */
-public interface BaseEnum {
+public interface BaseEnum<T> {
 
     /**
      * @title getCode
      * @description
      * @author chen qi
      * @updateTime 2021-05-18 8:41
-     * @return: java.lang.Integer
+     * @return: T
      * @throws
      */
-    Integer getCode();
+    T getCode();
 
     /**
      * @title getMsg
@@ -29,28 +29,4 @@ public interface BaseEnum {
      */
     String getMsg();
 
-
-    /**
-     * 通过枚举类型和code值获取对应的枚举类型
-     * @param enumType
-     * @param code
-     * @param <T>
-     * @return
-     */
-    static <T extends BaseEnum> T valueOf(Class<? extends BaseEnum> enumType, Integer code) {
-        if (enumType == null || code == null) {
-            return null;
-        }
-        T[] enumConstants = (T[]) enumType.getEnumConstants();
-        if (enumConstants == null) {
-            return null;
-        }
-        for (T enumConstant : enumConstants) {
-            int enumCode = enumConstant.getCode();
-            if (code.equals(enumCode)) {
-                return enumConstant;
-            }
-        }
-        return null;
-    }
 }

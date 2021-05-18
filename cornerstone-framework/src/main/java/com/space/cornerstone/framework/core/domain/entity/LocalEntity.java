@@ -13,7 +13,6 @@ import java.time.LocalDateTime;
  * @createTime 2021年05月18日 08:31:00
  */
 @Data
-@EqualsAndHashCode(callSuper = true)
 public class LocalEntity extends BaseEntity {
     private static final long serialVersionUID = -3341043990353711649L;
 
