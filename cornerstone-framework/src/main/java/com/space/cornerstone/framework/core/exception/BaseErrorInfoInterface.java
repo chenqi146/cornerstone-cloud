@@ -1,4 +1,4 @@
-package com.space.cornerstone.common.exception;
+package com.space.cornerstone.framework.core.exception;
 
 /**
  * @program: autoexcel
@@ -14,11 +14,11 @@ public interface BaseErrorInfoInterface {
      *  错误码
      * @return
      */
-    Integer getResultCode();
+    Integer getCode();
 
     /**
      * 错误信息
      * @return
      */
-    String getResultMsg();
+    String getMessage();
 }

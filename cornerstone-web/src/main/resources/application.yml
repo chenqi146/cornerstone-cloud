@@ -6,6 +6,14 @@ spring:
 
   # Redis配置
   redis:
+    timeout: 10s
+      lettuce:
+        pool:
+          max-active: 200
+          max-idle: 8
+          max-wait: 10s
+          min-idle: 2
+        shutdown-timeout: 3s
     database: 0
     host: cqmike-ali
     password: cqmike

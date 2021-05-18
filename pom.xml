@@ -34,6 +34,7 @@
         <mybatis-plus.version>3.4.2</mybatis-plus.version>
         <flywaydb.version>7.9.0</flywaydb.version>
         <guava.version>30.0-jre</guava.version>
+        <jackson.version>2.10.3</jackson.version>
     </properties>
 
     <dependencyManagement>
@@ -120,6 +121,12 @@
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
                 <version>${guava.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jackson.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

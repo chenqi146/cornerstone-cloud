@@ -1,4 +1,4 @@
-package com.space.cornerstone.common.enums;
+package com.space.cornerstone.framework.core.enums;
 
 /**
  * @author chen qi

@@ -1,4 +1,4 @@
-package com.space.cornerstone.common.domain.entity;
+package com.space.cornerstone.framework.core.domain.entity;
 
 import java.io.Serializable;
 
