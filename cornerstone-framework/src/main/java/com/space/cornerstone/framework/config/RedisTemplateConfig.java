@@ -15,7 +15,7 @@ import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
-import com.space.cornerstone.framework.core.util.RedisClient;
+import com.space.cornerstone.framework.core.redis.RedisClient;
 
 /**
  * RedisTemplateConfig

@@ -1,9 +1,10 @@
-package com.space.cornerstone.framework.core.util;
+package com.space.cornerstone.framework.core.redis;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.StrUtil;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.space.cornerstone.framework.core.exception.RedisException;
+import com.space.cornerstone.framework.core.util.JacksonUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.redis.core.Cursor;
