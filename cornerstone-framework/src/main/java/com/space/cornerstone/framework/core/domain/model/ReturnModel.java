@@ -15,9 +15,24 @@ public class ReturnModel<T> implements Serializable {
 
     private static final long serialVersionUID = -6503145232078692951L;
 
+    /**
+     * 响应是否成功
+     */
     private boolean success;
+
+    /**
+     * 响应状态码
+     */
     private int status;
+
+    /**
+     * 响应数据
+     */
     private T message;
+
+    /**
+     * 错误信息
+     */
     private String errorMessage;
 
     public ReturnModel() {

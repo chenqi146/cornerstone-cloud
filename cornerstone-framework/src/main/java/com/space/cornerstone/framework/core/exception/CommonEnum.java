@@ -1,5 +1,7 @@
 package com.space.cornerstone.framework.core.exception;
 
+import com.space.cornerstone.framework.core.enums.BaseEnum;
+
 /**
  * @EnumName: CommonEnum
  * @Description: CommonEnum
@@ -8,7 +10,7 @@ package com.space.cornerstone.framework.core.exception;
  * @Version: 1.0
  **/
 
-public enum CommonEnum implements BaseErrorInfoInterface {
+public enum CommonEnum implements BaseErrorInfoInterface, BaseEnum<Integer> {
 
     /**
      * 操作成功

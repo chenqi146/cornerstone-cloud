@@ -20,13 +20,13 @@ public interface BaseEnum<T> {
     T getCode();
 
     /**
-     * @title getMsg
+     * @title getMessage
      * @description  获取枚举 描述
      * @author chen qi
      * @updateTime 2021-05-18 8:42
      * @return: java.lang.String
      * @throws
      */
-    String getMsg();
+    String getMessage();
 
 }

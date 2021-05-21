@@ -1,3 +1,9 @@
 {
-  "outPath": "./src/main/resources/doc"
+  "outPath": "./src/main/resources/doc",
+  "errorCodeDictionaries": [{
+    "title": "响应码",
+    "enumClassName": "com.space.cornerstone.framework.core.exception.CommonEnum",
+    "codeField": "code",
+    "descField": "message"
+  }]
 }

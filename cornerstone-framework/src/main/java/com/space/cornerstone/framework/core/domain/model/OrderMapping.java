@@ -22,6 +22,9 @@ import java.util.concurrent.ConcurrentHashMap;
 @Accessors(chain = true)
 public class OrderMapping {
 
+    /**
+     * 是否开启下划线模式
+     */
     private boolean underLineMode;
 
     public OrderMapping() {

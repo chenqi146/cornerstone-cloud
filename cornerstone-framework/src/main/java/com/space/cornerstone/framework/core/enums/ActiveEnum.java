@@ -20,7 +20,7 @@ public enum ActiveEnum implements BaseEnum<String> {
     }
 
     @Override
-    public String getMsg() {
+    public String getMessage() {
         return name();
     }
 }
