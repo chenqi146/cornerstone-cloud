@@ -14,7 +14,7 @@ import java.util.Set;
  * @author chen qi
  * @version 1.0.0
  * @ClassName AuthUser.java
- * @Description TODO
+ * @Description AuthUser
  * @createTime 2021年05月21日 23:46:00
  */
 @Data

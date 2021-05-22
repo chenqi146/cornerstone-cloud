@@ -1,6 +1,5 @@
 package com.space.cornerstone.framework.core.domain.entity;
 
-import com.space.cornerstone.framework.core.enums.ActiveEnum;
 import lombok.Data;
 
 /**
@@ -17,6 +16,6 @@ public class ActiveEntity extends LocalEntity {
     /**
      * 启用/停用  Y-启用
      */
-    protected ActiveEnum active;
+    protected Boolean active;
 
 }
