@@ -18,4 +18,15 @@ public final class Constant {
     public static final String UPDATE_BY = "UPDATE_BY";
     public static final String CREATE_BY = "CREATE_BY";
 
+
+    /**
+     * 令牌
+     */
+    public static final String TOKEN = "token";
+
+    /**
+     * 令牌前缀
+     */
+    public static final String TOKEN_PREFIX = "Bearer ";
+
 }

@@ -29,6 +29,11 @@ public class AuthUser implements UserDetails {
     private SysUser user;
 
     /**
+     * 过期时间
+     */
+    private Long expireTime;
+
+    /**
      * 权限列表
      */
     private Set<String> permissions;

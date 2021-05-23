@@ -1,6 +1,8 @@
 package com.space.cornerstone.framework.core.auth;
 
+import cn.hutool.core.map.MapUtil;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.space.cornerstone.framework.core.domain.model.AuthUser;
 import com.space.cornerstone.framework.core.util.JacksonUtil;
 
 import java.util.Map;
@@ -41,6 +43,16 @@ public final class Auth {
 
     public static void clear() {
         map.remove();
+    }
+
+    public static AuthUser getUser() {
+        Map<String, Object> objectMap = map.get();
+        return MapUtil.get(objectMap, USER, AuthUser.class);
+    }
+
+    public static void setUser(AuthUser authUser) {
+        Map<String, Object> objectMap = map.get();
+        objectMap.put(USER, authUser);
     }
 
 }

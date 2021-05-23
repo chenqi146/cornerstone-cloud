@@ -26,4 +26,7 @@ public class UtilException extends BaseException {
         super(cause);
     }
 
+    public UtilException(String message, Throwable cause) {
+        super(message, cause);
+    }
 }

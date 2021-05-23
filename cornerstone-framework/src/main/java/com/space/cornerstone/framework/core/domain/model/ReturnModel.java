@@ -28,42 +28,51 @@ public class ReturnModel<T> implements Serializable {
     /**
      * 响应数据
      */
-    private T message;
+    private T data;
 
     /**
-     * 错误信息
+     * 信息
      */
-    private String errorMessage;
+    private String message;
 
     public ReturnModel() {
         this.status = -1;
     }
 
-    public ReturnModel(int status, T message) {
-        this(status == 200, status, message);
+    public ReturnModel(int status, T data) {
+        this(status == 200, status, data);
+    }
+    public ReturnModel(int status, String message) {
+        this(status == 200, status, null, message);
     }
 
-    public ReturnModel(T message) {
-        this(true, message);
+    public ReturnModel(T data) {
+        this(true, data);
     }
 
     public ReturnModel(boolean success) {
         this(success, null);
     }
 
-    public ReturnModel(boolean success, T message) {
-        this(success, success ? 200 : -1, message);
+    public ReturnModel(boolean success, T data) {
+        this(success, success ? 200 : -1, data);
     }
 
-    public ReturnModel(boolean success, int status, T message) {
+    public ReturnModel(boolean success, int status, T data) {
         this.success = success;
         this.status = status;
         if (success) {
-            this.message = message;
-        } else if (message != null) {
-            this.errorMessage = message.toString();
+            this.data = data;
+        } else if (data != null) {
+            this.message = data.toString();
         }
+    }
 
+    public ReturnModel(boolean success, int status, T data, String message) {
+        this.success = success;
+        this.status = status;
+        this.data = data;
+        this.message = message;
     }
 
     public boolean isSuccess() {
@@ -95,7 +104,7 @@ public class ReturnModel<T> implements Serializable {
         return new ReturnModel<>(t);
     }
 
-    public static <T> ReturnModel<T> message(int status, T t) {
+    public static <T> ReturnModel<T> message(int status, String t) {
         return new ReturnModel<>(status, t);
     }
 
@@ -111,29 +120,29 @@ public class ReturnModel<T> implements Serializable {
         return new ReturnModel<>(errorInfo.getCode(), errorInfo.getMessage());
     }
 
-    public T getMessage() {
-        return this.message;
+    public T getData() {
+        return this.data;
     }
 
-    public void setMessage(T message) {
-        this.message = message;
+    public void setData(T data) {
+        this.data = data;
     }
 
     public ReturnModel<T> message(T message) {
-        this.message = message;
+        this.data = message;
         return this;
     }
 
-    public String getErrorMessage() {
-        return this.errorMessage;
+    public String getMessage() {
+        return this.message;
     }
 
-    public void setErrorMessage(String errorMessage) {
-        this.errorMessage = errorMessage;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public ReturnModel<T> errorMessage(String errorMessage) {
-        this.errorMessage = errorMessage;
+        this.message = errorMessage;
         return this;
     }
 

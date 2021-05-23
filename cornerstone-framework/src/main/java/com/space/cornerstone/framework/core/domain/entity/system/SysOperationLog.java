@@ -1,8 +1,9 @@
 package com.space.cornerstone.framework.core.domain.entity.system;
 
 import java.time.LocalDateTime;
-import java.util.Date;
+
 import lombok.Data;
+import org.springframework.http.HttpMethod;
 
 @Data
 public class SysOperationLog {
@@ -69,7 +70,7 @@ public class SysOperationLog {
     /**
      * 请求方式，GET/POST
      */
-    private String requestMethod;
+    private HttpMethod requestMethod;
 
     /**
      * 内容类型

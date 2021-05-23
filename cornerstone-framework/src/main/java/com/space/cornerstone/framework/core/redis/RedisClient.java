@@ -189,6 +189,28 @@ public class RedisClient {
             throw new RedisException(e);
         }
     }
+    /**
+     * 普通缓存放入并设置时间
+     *
+     * @param key   键
+     * @param value 值
+     * @param time  时间 time要大于0 如果time小于等于0 将设置无限期
+     * @param timeUnit
+     * @return true成功 false 失败
+     */
+
+    public void setex(String key, Object value, int time, TimeUnit timeUnit) {
+        try {
+            if (time > 0) {
+                redisTemplate.opsForValue().set(key, value, time, timeUnit);
+            } else {
+                set(key, value);
+            }
+        } catch (Exception e) {
+            log.error("setex: key = {}, value = {}", key, value, e);
+            throw new RedisException(e);
+        }
+    }
 
 
     public long incr(String key) {
