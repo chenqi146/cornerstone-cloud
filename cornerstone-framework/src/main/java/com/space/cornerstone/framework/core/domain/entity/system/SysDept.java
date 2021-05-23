@@ -1,12 +1,11 @@
 package com.space.cornerstone.framework.core.domain.entity.system;
 
-import java.util.Date;
 
-import com.space.cornerstone.framework.core.domain.entity.LogicDeleteEntity;
+import com.space.cornerstone.framework.core.domain.entity.ActiveEntity;
 import lombok.Data;
 
 @Data
-public class SysDept extends LogicDeleteEntity {
+public class SysDept extends ActiveEntity {
     private static final long serialVersionUID = 1030859409020401154L;
 
     /**

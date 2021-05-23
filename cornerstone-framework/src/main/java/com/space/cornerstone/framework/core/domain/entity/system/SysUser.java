@@ -1,11 +1,14 @@
 package com.space.cornerstone.framework.core.domain.entity.system;
 
+import cn.hutool.core.util.StrUtil;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.space.cornerstone.framework.core.constant.Constant;
 import com.space.cornerstone.framework.core.domain.entity.LogicDeleteEntity;
 import lombok.Data;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 /**
  * 用户表
@@ -95,6 +98,14 @@ public class SysUser extends LogicDeleteEntity {
      * 备注
      */
     private String remark;
+
+    public boolean isAdmin() {
+        if (StrUtil.isEmpty(type)) {
+            return false;
+        }
+
+        return Objects.equals(Constant.USER_TYPE_ADMIN, type);
+    }
 
 
 }

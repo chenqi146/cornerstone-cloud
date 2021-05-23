@@ -29,4 +29,9 @@ public final class Constant {
      */
     public static final String TOKEN_PREFIX = "Bearer ";
 
+    /**
+     * 用户类型  管理员
+     */
+    public static final String USER_TYPE_ADMIN = "ADMIN";
+
 }

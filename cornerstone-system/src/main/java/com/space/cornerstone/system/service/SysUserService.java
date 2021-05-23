@@ -11,4 +11,11 @@ import com.space.cornerstone.framework.core.service.BaseService;
  * @createTime 2021年05月23日 09:29:00
  */
 public interface SysUserService extends BaseService<SysUser> {
+
+    /**
+     * 根据用户名获取用户
+     * @param username
+     * @return
+     */
+    SysUser getByUsername(String username);
 }
