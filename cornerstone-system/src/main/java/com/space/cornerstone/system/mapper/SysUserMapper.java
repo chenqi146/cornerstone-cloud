@@ -1,7 +1,15 @@
 package com.space.cornerstone.system.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.space.cornerstone.framework.core.domain.entity.system.SysUser;
+import com.space.cornerstone.system.domain.param.SysUserParam;
+import com.space.cornerstone.system.domain.vo.SysUserQueryVo;
+import com.space.cornerstone.system.domain.vo.UserVo;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * @author chen qi
@@ -11,4 +19,19 @@ import com.space.cornerstone.framework.core.domain.entity.system.SysUser;
  * @createTime 2021年05月22日 23:40:00
  */
 public interface SysUserMapper extends BaseMapper<SysUser> {
+
+    /**
+     *  查询用户授权信息
+     * @param userId
+     * @return
+     */
+    UserVo findAuthInfoByUserId(Long userId);
+
+    /**
+     * 查询用户列表
+     * @param page
+     * @param param
+     * @return
+     */
+    IPage<SysUserQueryVo> findSysUserList(@Param("page") Page<SysUserQueryVo> page, @Param("param") SysUserParam param);
 }

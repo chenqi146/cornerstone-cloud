@@ -13,7 +13,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * 自定义分页参数
+ *  传给mapper的page参数
  *PageInfo
  * @date 2020/3/27
  **/

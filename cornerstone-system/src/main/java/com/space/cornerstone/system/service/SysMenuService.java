@@ -5,6 +5,7 @@ import com.space.cornerstone.framework.core.domain.entity.system.SysUser;
 import com.space.cornerstone.framework.core.service.BaseService;
 import org.apache.catalina.User;
 
+import java.util.List;
 import java.util.Set;
 
 /**

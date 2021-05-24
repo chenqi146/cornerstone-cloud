@@ -14,7 +14,7 @@ import java.util.List;
  * @author chen qi
  * @version 1.0.0
  * @ClassName Paging.java
- * @Description Paging
+ * @Description Paging 返回
  * @createTime 2021年05月20日 23:32:00
  */
 @Data
@@ -93,7 +93,7 @@ public class Paging<T> implements Serializable {
             return new Paging<>(this.total, this.records, this.pageNum, this.pageSize);
         }
 
-        public Paging<T> build(IPage<T> page) {
+        public <T> Paging<T> build(IPage<T> page) {
             return new Paging<>(page);
         }
 

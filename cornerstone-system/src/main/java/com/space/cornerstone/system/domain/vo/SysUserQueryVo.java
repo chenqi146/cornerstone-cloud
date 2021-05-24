@@ -1,22 +1,20 @@
-package com.space.cornerstone.framework.core.domain.entity.system;
+package com.space.cornerstone.system.domain.vo;
 
-import cn.hutool.core.util.StrUtil;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.space.cornerstone.framework.core.constant.Constant;
-import com.space.cornerstone.framework.core.domain.entity.LogicDeleteEntity;
 import lombok.Data;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 /**
- * 用户表
+ * @author chen qi
+ * @version 1.0.0
+ * @ClassName SysUserQueryVo.java
+ * @Description SysUserQueryVo
+ * @createTime 2021年05月24日 23:38:00
  */
 @Data
-public class SysUser extends LogicDeleteEntity {
-    private static final long serialVersionUID = 6929137513399914731L;
+public class SysUserQueryVo {
 
     /**
      * 用户ID
@@ -64,13 +62,6 @@ public class SysUser extends LogicDeleteEntity {
     private String image;
 
     /**
-     * 密码
-     */
-    @JsonIgnore
-    @JsonProperty
-    private String password;
-
-    /**
      * 帐号状态（1正常 0停用）
      */
     private Boolean active;
@@ -99,15 +90,4 @@ public class SysUser extends LogicDeleteEntity {
      * 备注
      */
     private String remark;
-
-    public boolean isAdmin() {
-        if (StrUtil.isEmpty(type)) {
-            return false;
-        }
-
-        return Objects.equals(Constant.USER_TYPE_ADMIN, type);
-    }
-
-
 }
-

@@ -12,4 +12,7 @@ import org.apache.catalina.User;
  * @createTime 2021年05月23日 09:29:00
  */
 public interface SysRoleService extends BaseService<SysRole> {
+
+
+
 }

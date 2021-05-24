@@ -1,7 +1,13 @@
 package com.space.cornerstone.system.service;
 
 import com.space.cornerstone.framework.core.domain.entity.system.SysUser;
+import com.space.cornerstone.framework.core.domain.model.PageInfo;
+import com.space.cornerstone.framework.core.domain.model.Paging;
+import com.space.cornerstone.framework.core.domain.param.BaseParam;
 import com.space.cornerstone.framework.core.service.BaseService;
+import com.space.cornerstone.system.domain.param.SysUserParam;
+import com.space.cornerstone.system.domain.vo.SysUserQueryVo;
+import com.space.cornerstone.system.domain.vo.UserVo;
 
 /**
  * @author chen qi
@@ -18,4 +24,24 @@ public interface SysUserService extends BaseService<SysUser> {
      * @return
      */
     SysUser getByUsername(String username);
+
+    /**
+     * @Description 查询用户授权信息
+     * @author chen qi
+     * @param userId
+     * @since 2021-05-24 22:18
+     * @return : com.space.cornerstone.system.domain.vo.UserVo
+     * @throws com.space.cornerstone.framework.core.exception.BusinessException
+     */
+    UserVo findAuthInfoByUserId(Long userId);
+
+    /**
+     * @Description  查询用户列表 分页
+     * @author chen qi 
+     * @param param
+     * @since 2021-05-24 23:06 
+     * @return : com.space.cornerstone.framework.core.domain.model.Paging<com.space.cornerstone.framework.core.domain.entity.system.SysUser>
+     */
+    Paging<SysUserQueryVo> listPage(SysUserParam param);
+
 }
