@@ -86,6 +86,10 @@ public enum CommonEnum implements BaseErrorInfoInterface, BaseEnum<Integer> {
     JWT_DECODE_EXCEPTION(5107, "Token解析异常"),
 
     HTTP_REQUEST_METHOD_NOT_SUPPORTED_EXCEPTION(5108, "METHOD NOT SUPPORTED"),
+    /**
+     * 获取验证码异常
+     */
+    CAPTCHA_CODE_EXCEPTION(5109, "验证码异常"),
     ;
 
 

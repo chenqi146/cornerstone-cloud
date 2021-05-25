@@ -34,4 +34,7 @@ public final class Constant {
      */
     public static final String USER_TYPE_ADMIN = "ADMIN";
 
+    public static final String CAPTCHA_CODE = "Captcha:";
+    public static final Integer CAPTCHA_EXPIRATION = 5;
+
 }

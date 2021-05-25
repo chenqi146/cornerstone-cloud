@@ -1,0 +1,28 @@
+package com.space.cornerstone.framework.core.exception;
+
+/**
+ * 验证码异常
+ *
+ * @author chen qi
+ * @date 2021-05-18 14:50
+ **/
+public class CaptchaException extends BaseException {
+    private static final long serialVersionUID = -2303357122330162359L;
+
+    public CaptchaException(String message) {
+        super(message);
+    }
+
+    public CaptchaException(Integer errorCode, String message) {
+        super(errorCode, message);
+    }
+
+    public CaptchaException(BaseErrorInfoInterface errorInfoInterface) {
+        super(errorInfoInterface);
+    }
+
+    public CaptchaException(String message, Throwable throwable) {
+        super(message, throwable);
+    }
+
+}

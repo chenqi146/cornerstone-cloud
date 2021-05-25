@@ -4,6 +4,8 @@ import cn.hutool.core.date.DatePattern;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.StrUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -26,9 +28,9 @@ import java.util.Objects;
  * @Description BaseController
  * @createTime 2021年05月18日 23:39:00
  */
-@Slf4j
 public class BaseController {
 
+    protected static final Logger log = LoggerFactory.getLogger(BaseController.class);
 
     public BaseController() {
     }
