@@ -1,4 +1,4 @@
-package com.space.cornerstone.framework.core.domain.entity.system;
+package com.space.cornerstone.system.domain.entity;
 
 import cn.hutool.core.util.StrUtil;
 import com.fasterxml.jackson.annotation.JsonIgnore;

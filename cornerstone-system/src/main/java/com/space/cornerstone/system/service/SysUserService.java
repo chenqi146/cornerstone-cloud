@@ -1,9 +1,7 @@
 package com.space.cornerstone.system.service;
 
-import com.space.cornerstone.framework.core.domain.entity.system.SysUser;
-import com.space.cornerstone.framework.core.domain.model.PageInfo;
+import com.space.cornerstone.system.domain.entity.SysUser;
 import com.space.cornerstone.framework.core.domain.model.Paging;
-import com.space.cornerstone.framework.core.domain.param.BaseParam;
 import com.space.cornerstone.framework.core.service.BaseService;
 import com.space.cornerstone.system.domain.param.SysUserParam;
 import com.space.cornerstone.system.domain.vo.SysUserQueryVo;
@@ -40,7 +38,7 @@ public interface SysUserService extends BaseService<SysUser> {
      * @author chen qi 
      * @param param
      * @since 2021-05-24 23:06 
-     * @return : com.space.cornerstone.framework.core.domain.model.Paging<com.space.cornerstone.framework.core.domain.entity.system.SysUser>
+     * @return : com.space.cornerstone.framework.core.domain.model.Paging<com.space.cornerstone.system.domain.entity.SysUser>
      */
     Paging<SysUserQueryVo> listPage(SysUserParam param);
 

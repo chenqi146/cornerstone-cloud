@@ -1,0 +1,10 @@
+server:
+  port: 8000
+
+spring:
+  application:
+    name: cornerstone-admin
+  security:
+    user:
+      name: "admin"
+      password: "admin"

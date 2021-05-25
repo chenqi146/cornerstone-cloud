@@ -1,4 +1,4 @@
-package com.space.cornerstone.system.util;
+package com.space.cornerstone.framework.core.util;
 
 import cn.hutool.core.util.StrUtil;
 import com.space.cornerstone.framework.core.constant.Constant;

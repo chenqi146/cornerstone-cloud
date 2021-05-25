@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.space.cornerstone.system.mapper.SysUserMapper">
-    <resultMap id="BaseResultMap" type="com.space.cornerstone.framework.core.domain.entity.system.SysUser">
+    <resultMap id="BaseResultMap" type="com.space.cornerstone.system.domain.entity.SysUser">
         <!--@mbg.generated-->
         <!--@Table SYS_USER-->
         <id column="id" jdbcType="BIGINT" property="id"/>
@@ -40,9 +40,9 @@
     </sql>
 
     <resultMap id="AuthInfo" type="com.space.cornerstone.system.domain.vo.UserVo">
-        <association property="user" javaType="com.space.cornerstone.framework.core.domain.entity.system.SysUser" />
-        <collection property="menus" ofType="com.space.cornerstone.framework.core.domain.entity.system.SysMenu"/>
-        <collection property="roles" ofType="com.space.cornerstone.framework.core.domain.entity.system.SysRole"/>
+        <association property="user" javaType="com.space.cornerstone.system.domain.entity.SysUser" />
+        <collection property="menus" ofType="com.space.cornerstone.system.domain.entity.SysMenu"/>
+        <collection property="roles" ofType="com.space.cornerstone.system.domain.entity.SysRole"/>
     </resultMap>
 
     <select id="findAuthInfoByUserId" parameterType="long" resultMap="AuthInfo">

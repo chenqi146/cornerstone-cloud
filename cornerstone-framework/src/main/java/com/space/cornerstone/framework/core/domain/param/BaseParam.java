@@ -26,6 +26,11 @@ public abstract class BaseParam implements Serializable {
 
     private List<OrderItem> orderItems;
 
+    /**
+     * 启用/停用  Y-启用
+     */
+    private Boolean active;
+
     public Long getPageNum(Long pageNum) {
         return (pageNum == null || pageNum <= 0) ? Constant.PAGE_NUM : pageNum;
     }

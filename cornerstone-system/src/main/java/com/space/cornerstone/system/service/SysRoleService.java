@@ -1,8 +1,7 @@
 package com.space.cornerstone.system.service;
 
-import com.space.cornerstone.framework.core.domain.entity.system.SysRole;
+import com.space.cornerstone.system.domain.entity.SysRole;
 import com.space.cornerstone.framework.core.service.BaseService;
-import org.apache.catalina.User;
 
 /**
  * @author chen qi

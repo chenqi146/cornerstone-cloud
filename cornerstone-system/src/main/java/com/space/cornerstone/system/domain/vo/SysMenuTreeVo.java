@@ -1,13 +1,19 @@
-package com.space.cornerstone.framework.core.domain.entity.system;
-
-import java.util.Date;
+package com.space.cornerstone.system.domain.vo;
 
 import com.space.cornerstone.framework.core.domain.entity.ActiveEntity;
 import lombok.Data;
 
+/**
+ * @author chen qi
+ * @version 1.0.0
+ * @ClassName SysMenuQueryTree.java
+ * @Description 系统菜单树形列表
+ * @createTime 2021年05月25日 23:01:00
+ */
 @Data
-public class SysMenu extends ActiveEntity {
-    private static final long serialVersionUID = -4939639999420098762L;
+public class SysMenuTreeVo extends ActiveEntity {
+    private static final long serialVersionUID = 2536862852930663353L;
+
     /**
      * 菜单ID
      */
@@ -62,5 +68,9 @@ public class SysMenu extends ActiveEntity {
      * 备注
      */
     private String remark;
-}
 
+    /**
+     * 子菜单列表
+     */
+    private SysDeptTreeVo childList;
+}

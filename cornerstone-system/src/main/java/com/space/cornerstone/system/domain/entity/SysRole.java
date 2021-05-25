@@ -1,4 +1,4 @@
-package com.space.cornerstone.framework.core.domain.entity.system;
+package com.space.cornerstone.system.domain.entity;
 
 
 import com.space.cornerstone.framework.core.domain.entity.ActiveEntity;

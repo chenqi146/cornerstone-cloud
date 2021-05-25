@@ -17,11 +17,18 @@ public class SysUserParam extends BaseParam {
 
     private static final long serialVersionUID = 1100838202439277025L;
 
-
-    private String nickname;
+    /**
+     * 部门id
+     */
     private Long deptId;
-    private Boolean active;
 
+    /**
+     * 开始时间
+     */
     private LocalDate beginTime;
+
+    /**
+     * 结束时间
+     */
     private LocalDate endTime;
 }

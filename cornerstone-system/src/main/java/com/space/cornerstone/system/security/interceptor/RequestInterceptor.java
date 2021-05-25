@@ -7,7 +7,7 @@ import com.space.cornerstone.framework.core.domain.model.ReturnModel;
 import com.space.cornerstone.framework.core.exception.CommonEnum;
 import com.space.cornerstone.framework.core.util.JacksonUtil;
 import com.space.cornerstone.system.service.TokenService;
-import com.space.cornerstone.system.util.ServletUtil;
+import com.space.cornerstone.framework.core.util.ServletUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Component;

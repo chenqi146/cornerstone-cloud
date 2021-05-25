@@ -1,7 +1,9 @@
 package com.space.cornerstone.system.service.impl;
 
+import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.StrUtil;
-import com.space.cornerstone.framework.core.domain.entity.system.SysUser;
+import com.space.cornerstone.framework.core.domain.model.LoginUserDto;
+import com.space.cornerstone.system.domain.entity.SysUser;
 import com.space.cornerstone.framework.core.domain.model.AuthUser;
 import com.space.cornerstone.framework.core.util.PreconditionsUtil;
 import com.space.cornerstone.system.service.SysMenuService;
@@ -40,6 +42,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     }
 
     public UserDetails createLoginUser(SysUser user) {
-        return new AuthUser(user, menuService.getMenuPermission(user));
+        LoginUserDto dto = new LoginUserDto();
+        BeanUtil.copyProperties(user, dto, true);
+        return new AuthUser(dto, menuService.getMenuPermission(user));
     }
 }

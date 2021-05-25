@@ -10,7 +10,6 @@
 
     <modules>
         <module>cornerstone-admin</module>
-        <module>cornerstone-config</module>
         <module>cornerstone-quartz</module>
         <module>cornerstone-web</module>
         <module>cornerstone-system</module>
@@ -35,6 +34,7 @@
         <flywaydb.version>7.9.0</flywaydb.version>
         <guava.version>30.0-jre</guava.version>
         <jackson.version>2.10.3</jackson.version>
+        <spring-boot-admin.version>2.2.2</spring-boot-admin.version>
     </properties>
 
     <dependencyManagement>

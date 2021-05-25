@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.core.metadata.OrderItem;
 import com.baomidou.mybatisplus.extension.conditions.query.LambdaQueryChainWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.space.cornerstone.framework.core.domain.entity.system.SysUser;
+import com.space.cornerstone.system.domain.entity.SysUser;
 import com.space.cornerstone.framework.core.domain.model.PageInfo;
 import com.space.cornerstone.framework.core.domain.model.Paging;
 import com.space.cornerstone.framework.core.exception.BusinessException;
@@ -58,7 +58,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
     /**
      * 查询用户列表 分页
      * @param param
-     * @return : com.space.cornerstone.framework.core.domain.model.Paging<com.space.cornerstone.framework.core.domain.entity.system.SysUser>
+     * @return : com.space.cornerstone.framework.core.domain.model.Paging<com.space.cornerstone.system.domain.entity.SysUser>
      * @Description
      * @author chen qi
      * @since 2021-05-24 23:06

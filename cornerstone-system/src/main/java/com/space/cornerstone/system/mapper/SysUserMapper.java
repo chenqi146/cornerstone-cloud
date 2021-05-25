@@ -3,13 +3,11 @@ package com.space.cornerstone.system.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.space.cornerstone.framework.core.domain.entity.system.SysUser;
+import com.space.cornerstone.system.domain.entity.SysUser;
 import com.space.cornerstone.system.domain.param.SysUserParam;
 import com.space.cornerstone.system.domain.vo.SysUserQueryVo;
 import com.space.cornerstone.system.domain.vo.UserVo;
 import org.apache.ibatis.annotations.Param;
-
-import java.util.List;
 
 /**
  * @author chen qi

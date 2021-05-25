@@ -2,7 +2,7 @@ package com.space.cornerstone.system.security.filter;
 
 import com.space.cornerstone.framework.core.domain.model.AuthUser;
 import com.space.cornerstone.system.service.TokenService;
-import com.space.cornerstone.system.util.ServletUtil;
+import com.space.cornerstone.framework.core.util.ServletUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

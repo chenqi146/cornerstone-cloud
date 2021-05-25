@@ -1,13 +1,11 @@
 package com.space.cornerstone.framework.core.domain.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.space.cornerstone.framework.core.domain.entity.system.SysUser;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
-import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -26,7 +24,7 @@ public class AuthUser implements UserDetails {
      */
     private String token;
 
-    private SysUser user;
+    private LoginUserDto user;
 
     /**
      * 过期时间
@@ -41,7 +39,7 @@ public class AuthUser implements UserDetails {
     public AuthUser() {
     }
 
-    public AuthUser(SysUser user, Set<String> permissions) {
+    public AuthUser(LoginUserDto user, Set<String> permissions) {
         this.user = user;
         this.permissions = permissions;
     }

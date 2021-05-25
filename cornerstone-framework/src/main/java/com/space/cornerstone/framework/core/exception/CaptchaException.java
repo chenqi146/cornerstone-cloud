@@ -9,6 +9,9 @@ package com.space.cornerstone.framework.core.exception;
 public class CaptchaException extends BaseException {
     private static final long serialVersionUID = -2303357122330162359L;
 
+    public CaptchaException() {
+        super();
+    }
     public CaptchaException(String message) {
         super(message);
     }

@@ -1,11 +1,9 @@
 package com.space.cornerstone.system.service;
 
-import com.space.cornerstone.framework.core.domain.entity.system.SysMenu;
-import com.space.cornerstone.framework.core.domain.entity.system.SysUser;
+import com.space.cornerstone.system.domain.entity.SysMenu;
+import com.space.cornerstone.system.domain.entity.SysUser;
 import com.space.cornerstone.framework.core.service.BaseService;
-import org.apache.catalina.User;
 
-import java.util.List;
 import java.util.Set;
 
 /**
