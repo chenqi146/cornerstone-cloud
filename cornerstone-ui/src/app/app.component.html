@@ -118,11 +118,13 @@
     cursor: pointer;
   }
 
+  /*按钮 hover颜色加深*/
   .card-container .card:not(.highlight-card):hover {
     transform: translateY(-3px);
     box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
   }
 
+  /*icon hover颜色加深*/
   .card-container .card:not(.highlight-card):hover .material-icons path {
     fill: rgb(105, 103, 103);
   }
@@ -337,7 +339,7 @@
     </svg>
 
   </div>
-
+  <mat-slider min="1" max="100" step="1" value="1"></mat-slider>
   <!-- Resources -->
   <h2>Resources</h2>
   <p>Here are some links to help you get started:</p>
