@@ -6,6 +6,9 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
 
+import { HttpClientModule } from '@angular/common/http';
+import { HttpInterceptorProviders } from './http-interceptors';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -14,9 +17,10 @@ import { MatSliderModule } from '@angular/material/slider';
     BrowserModule,
     AppRoutingModule,
     MatSliderModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: HttpInterceptorProviders,
   bootstrap: [AppComponent]
 })
 export class AppModule { }
