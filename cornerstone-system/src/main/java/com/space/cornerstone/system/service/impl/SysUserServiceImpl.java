@@ -6,11 +6,11 @@ import com.baomidou.mybatisplus.core.metadata.OrderItem;
 import com.baomidou.mybatisplus.extension.conditions.query.LambdaQueryChainWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.space.cornerstone.system.domain.entity.SysUser;
 import com.space.cornerstone.framework.core.domain.model.PageInfo;
 import com.space.cornerstone.framework.core.domain.model.Paging;
 import com.space.cornerstone.framework.core.exception.BusinessException;
 import com.space.cornerstone.framework.core.util.PreconditionsUtil;
+import com.space.cornerstone.system.domain.entity.SysUser;
 import com.space.cornerstone.system.domain.param.SysUserParam;
 import com.space.cornerstone.system.domain.vo.SysUserQueryVo;
 import com.space.cornerstone.system.domain.vo.UserVo;
@@ -52,7 +52,9 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
     @Override
     public UserVo findAuthInfoByUserId(Long userId) {
         PreconditionsUtil.checkArgument(userId != null, "userId is not empty");
-        return getBaseMapper().findAuthInfoByUserId(userId);
+        final UserVo userVo = getBaseMapper().findAuthInfoByUserId(userId);
+        // TODO: 2021/5/27  convert tree
+        return userVo;
     }
 
     /**

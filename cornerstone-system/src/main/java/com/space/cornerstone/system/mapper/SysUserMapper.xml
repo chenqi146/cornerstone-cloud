@@ -41,7 +41,7 @@
 
     <resultMap id="AuthInfo" type="com.space.cornerstone.system.domain.vo.UserVo">
         <association property="user" javaType="com.space.cornerstone.system.domain.entity.SysUser" />
-        <collection property="menus" ofType="com.space.cornerstone.system.domain.entity.SysMenu"/>
+        <collection property="menus" ofType="com.space.cornerstone.system.domain.vo.SysMenuTreeVo"/>
         <collection property="roles" ofType="com.space.cornerstone.system.domain.entity.SysRole"/>
     </resultMap>
 

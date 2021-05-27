@@ -1,6 +1,5 @@
 package com.space.cornerstone.system.domain.vo;
 
-import com.space.cornerstone.system.domain.entity.SysMenu;
 import com.space.cornerstone.system.domain.entity.SysRole;
 import com.space.cornerstone.system.domain.entity.SysUser;
 import lombok.Data;
@@ -11,14 +10,25 @@ import java.util.Set;
  * @author chen qi
  * @version 1.0.0
  * @ClassName UserVo.java
- * @Description TODO
+ * @Description auth
  * @createTime 2021年05月24日 20:42:00
  */
 @Data
 public class UserVo {
 
+    /**
+     * 用户信息
+     */
     private SysUser user;
-    private Set<SysMenu> menus;
+
+    /**
+     * 用户菜单信息树
+     */
+    private Set<SysMenuTreeVo> menus;
+
+    /**
+     * 用户角色信息列表
+     */
     private Set<SysRole> roles;
 
 }

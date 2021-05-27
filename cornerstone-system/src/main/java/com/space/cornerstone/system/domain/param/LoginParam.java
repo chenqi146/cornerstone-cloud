@@ -27,10 +27,10 @@ public class LoginParam implements Serializable {
     /**
      * 验证码
      */
-    private String code;
+    private String c;
 
     /**
      * 验证码唯一标识
      */
-    private String uuid;
+    private String u;
 }
