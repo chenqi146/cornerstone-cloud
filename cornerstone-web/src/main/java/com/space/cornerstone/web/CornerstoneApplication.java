@@ -1,27 +1,30 @@
-package com.space.cornerstone.system;
+package com.space.cornerstone.web;
 
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.space.cornerstone.framework.core.util.JacksonUtil;
 import com.space.cornerstone.system.domain.entity.SysUser;
 import com.space.cornerstone.system.service.SysUserService;
-import com.space.cornerstone.web.CornerstoneApplication;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.annotation.Resource;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest(classes = CornerstoneApplication.class)
-public class LoginServiceImplTest {
+@MapperScan(basePackages = "com.space.cornerstone.**.mapper")
+@SpringBootApplication(scanBasePackages = {"com.space.cornerstone"})
+public class CornerstoneApplication {
+
+
+    public static void main(String[] args) {
+        SpringApplication.run(CornerstoneApplication.class, args);
+    }
 
     @Resource
     private SysUserService sysUserService;
 
-    @Test
+    @GetMapping("/profile/sss")
     public void test() {
         final LambdaUpdateWrapper<SysUser> lambda = new UpdateWrapper<SysUser>().lambda().eq(SysUser::getUserName, "qqq").set(SysUser::getEmail, "aaa");
         sysUserService.update(lambda);

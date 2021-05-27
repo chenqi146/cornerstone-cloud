@@ -16,7 +16,6 @@ import org.springframework.context.annotation.Configuration;
  * @createTime 2021年05月21日 23:19:00
  */
 @Configuration
-@MapperScan("com.space")
 public class MybatisPlusConfig {
 
     /**

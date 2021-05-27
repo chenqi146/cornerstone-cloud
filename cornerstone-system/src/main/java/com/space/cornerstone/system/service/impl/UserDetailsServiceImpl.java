@@ -2,15 +2,14 @@ package com.space.cornerstone.system.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.StrUtil;
-import com.space.cornerstone.framework.core.domain.model.LoginUserDto;
-import com.space.cornerstone.system.domain.entity.SysUser;
 import com.space.cornerstone.framework.core.domain.model.AuthUser;
+import com.space.cornerstone.framework.core.domain.model.LoginUserDto;
 import com.space.cornerstone.framework.core.util.PreconditionsUtil;
+import com.space.cornerstone.system.domain.entity.SysUser;
 import com.space.cornerstone.system.service.SysMenuService;
 import com.space.cornerstone.system.service.SysUserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -24,12 +23,11 @@ import java.util.Optional;
  */
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-    @Autowired
-    private  SysUserService userService;
-    @Autowired
-    private  SysMenuService menuService;
+    private final SysUserService userService;
+    private final SysMenuService menuService;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

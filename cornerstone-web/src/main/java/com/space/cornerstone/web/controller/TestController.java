@@ -1,8 +1,6 @@
-package com.space.cornerstone.controller;
+package com.space.cornerstone.web.controller;
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.space.cornerstone.framework.core.controller.BaseController;
-import com.space.cornerstone.framework.core.domain.entity.BaseEntity;
 import com.space.cornerstone.framework.core.domain.model.Paging;
 import com.space.cornerstone.framework.core.domain.model.ReturnModel;
 import org.springframework.web.bind.annotation.GetMapping;

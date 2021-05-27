@@ -5,6 +5,7 @@ import cn.hutool.core.util.StrUtil;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.space.cornerstone.framework.core.exception.RedisException;
 import com.space.cornerstone.framework.core.util.JacksonUtil;
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.redis.core.Cursor;
@@ -28,14 +29,12 @@ import java.util.concurrent.TimeUnit;
  * @author: chen qi
  * @create: 2020-12-06 10:11
  **/
+@RequiredArgsConstructor
 public class RedisClient {
     private static final Logger log = LoggerFactory.getLogger(RedisClient.class);
 
     private final RedisTemplate<String, Object> redisTemplate;
 
-    public RedisClient(RedisTemplate<String, Object> redisTemplate) {
-        this.redisTemplate = redisTemplate;
-    }
     // =============================common============================
 
     public Set<String> scan(String keyPattern) {

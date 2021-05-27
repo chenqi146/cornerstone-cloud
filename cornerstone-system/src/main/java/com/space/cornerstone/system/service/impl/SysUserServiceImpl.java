@@ -17,7 +17,6 @@ import com.space.cornerstone.system.domain.vo.UserVo;
 import com.space.cornerstone.system.mapper.SysUserMapper;
 import com.space.cornerstone.system.service.SysUserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -28,10 +27,8 @@ import org.springframework.stereotype.Service;
  * @createTime 2021年05月23日 19:46:00
  */
 @Service
+@RequiredArgsConstructor
 public class SysUserServiceImpl extends BaseServiceImpl<SysUserMapper, SysUser> implements SysUserService {
-
-    @Autowired
-    private  SysUserMapper sysUserMapper;
 
 
     /**
@@ -44,13 +41,13 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUserMapper, SysUser> 
     public SysUser getByUsername(String username) {
         PreconditionsUtil.checkArgument(StrUtil.isNotEmpty(username), "username is not empty");
         LambdaQueryChainWrapper<SysUser> wrapper = lambdaQuery().eq(SysUser::getUserName, username).last("LIMIT 1");
-        return sysUserMapper.selectOne(wrapper);
+        return getBaseMapper().selectOne(wrapper);
     }
 
     /**
      * @param userId
      * @return : com.space.cornerstone.system.domain.vo.UserVo
-     * @throws  BusinessException
+     * @throws BusinessException
      * @Description 查询用户授权信息
      * @author chen qi
      * @since 2021-05-24 22:18
@@ -58,7 +55,7 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUserMapper, SysUser> 
     @Override
     public UserVo findAuthInfoByUserId(Long userId) {
         PreconditionsUtil.checkArgument(userId != null, "userId is not empty");
-        final UserVo userVo = sysUserMapper.findAuthInfoByUserId(userId);
+        final UserVo userVo = getBaseMapper().findAuthInfoByUserId(userId);
         // TODO: 2021/5/27  convert tree
         return userVo;
     }
@@ -76,7 +73,7 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUserMapper, SysUser> 
     public Paging<SysUserQueryVo> listPage(SysUserParam param) {
 
         Page<SysUserQueryVo> page = new PageInfo<>(param, OrderItem.desc(getLambdaColumn(SysUser::getCreateTime)));
-        IPage<SysUserQueryVo> sysUserList = sysUserMapper.findSysUserList(page, param);
+        IPage<SysUserQueryVo> sysUserList = getBaseMapper().findSysUserList(page, param);
         return Paging.builder().build(sysUserList);
     }
 }
