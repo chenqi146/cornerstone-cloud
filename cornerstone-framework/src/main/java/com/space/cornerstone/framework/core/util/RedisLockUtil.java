@@ -1,7 +1,7 @@
 package com.space.cornerstone.framework.core.util;
 
 import com.google.common.collect.Lists;
-import com.space.cornerstone.framework.core.redis.RedisClient;
+import com.space.cornerstone.framework.core.service.RedisClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

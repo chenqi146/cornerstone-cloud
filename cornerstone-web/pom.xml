@@ -17,16 +17,20 @@
     </properties>
 
     <dependencies>
-
         <dependency>
             <groupId>com.space</groupId>
-            <artifactId>cornerstone-framework</artifactId>
+            <artifactId>cornerstone-system</artifactId>
             <version>${project.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 

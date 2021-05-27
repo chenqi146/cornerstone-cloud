@@ -5,10 +5,10 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.metadata.OrderItem;
 import com.baomidou.mybatisplus.extension.conditions.query.LambdaQueryChainWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.space.cornerstone.framework.core.domain.model.PageInfo;
 import com.space.cornerstone.framework.core.domain.model.Paging;
 import com.space.cornerstone.framework.core.exception.BusinessException;
+import com.space.cornerstone.framework.core.service.impl.BaseServiceImpl;
 import com.space.cornerstone.framework.core.util.PreconditionsUtil;
 import com.space.cornerstone.system.domain.entity.SysUser;
 import com.space.cornerstone.system.domain.param.SysUserParam;
@@ -16,6 +16,8 @@ import com.space.cornerstone.system.domain.vo.SysUserQueryVo;
 import com.space.cornerstone.system.domain.vo.UserVo;
 import com.space.cornerstone.system.mapper.SysUserMapper;
 import com.space.cornerstone.system.service.SysUserService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -26,7 +28,11 @@ import org.springframework.stereotype.Service;
  * @createTime 2021年05月23日 19:46:00
  */
 @Service
-public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> implements SysUserService {
+public class SysUserServiceImpl extends BaseServiceImpl<SysUserMapper, SysUser> implements SysUserService {
+
+    @Autowired
+    private  SysUserMapper sysUserMapper;
+
 
     /**
      * 根据用户名获取用户
@@ -38,27 +44,28 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
     public SysUser getByUsername(String username) {
         PreconditionsUtil.checkArgument(StrUtil.isNotEmpty(username), "username is not empty");
         LambdaQueryChainWrapper<SysUser> wrapper = lambdaQuery().eq(SysUser::getUserName, username).last("LIMIT 1");
-        return getBaseMapper().selectOne(wrapper);
+        return sysUserMapper.selectOne(wrapper);
     }
 
     /**
      * @param userId
      * @return : com.space.cornerstone.system.domain.vo.UserVo
+     * @throws  BusinessException
      * @Description 查询用户授权信息
      * @author chen qi
      * @since 2021-05-24 22:18
-     * @throws BusinessException
      */
     @Override
     public UserVo findAuthInfoByUserId(Long userId) {
         PreconditionsUtil.checkArgument(userId != null, "userId is not empty");
-        final UserVo userVo = getBaseMapper().findAuthInfoByUserId(userId);
+        final UserVo userVo = sysUserMapper.findAuthInfoByUserId(userId);
         // TODO: 2021/5/27  convert tree
         return userVo;
     }
 
     /**
      * 查询用户列表 分页
+     *
      * @param param
      * @return : com.space.cornerstone.framework.core.domain.model.Paging<com.space.cornerstone.system.domain.entity.SysUser>
      * @Description
@@ -69,7 +76,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
     public Paging<SysUserQueryVo> listPage(SysUserParam param) {
 
         Page<SysUserQueryVo> page = new PageInfo<>(param, OrderItem.desc(getLambdaColumn(SysUser::getCreateTime)));
-        IPage<SysUserQueryVo> sysUserList = getBaseMapper().findSysUserList(page, param);
+        IPage<SysUserQueryVo> sysUserList = sysUserMapper.findSysUserList(page, param);
         return Paging.builder().build(sysUserList);
     }
 }

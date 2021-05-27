@@ -2,6 +2,7 @@ package com.space.cornerstone.system.service.impl;
 
 import cn.hutool.core.collection.CollUtil;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.space.cornerstone.framework.core.service.impl.BaseServiceImpl;
 import com.space.cornerstone.system.domain.entity.SysMenu;
 import com.space.cornerstone.system.domain.entity.SysUser;
 import com.space.cornerstone.system.mapper.SysMenuMapper;
@@ -22,7 +23,7 @@ import java.util.stream.Collectors;
  */
 @Service
 @RequiredArgsConstructor
-public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> implements SysMenuService {
+public class SysMenuServiceImpl extends BaseServiceImpl<SysMenuMapper, SysMenu> implements SysMenuService {
 
     /**
      * @param sysUser 用户信息

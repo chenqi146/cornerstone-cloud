@@ -30,7 +30,7 @@
         <kaptcha.version>2.3.2</kaptcha.version>
         <jwt.version>0.9.1</jwt.version>
         <hutool.version>5.6.5</hutool.version>
-        <mybatis-plus.version>3.4.2</mybatis-plus.version>
+        <mybatis-plus.version>3.4.1</mybatis-plus.version>
         <flywaydb.version>7.9.0</flywaydb.version>
         <guava.version>30.0-jre</guava.version>
         <jackson.version>2.10.3</jackson.version>

@@ -43,8 +43,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
         registry.addConverterFactory(new EnumConvertFactory());
     }
 
-    @Value("${base.filter.xss.enable}")
-    private boolean enableXss;
+    @Value("${base.filter.xss.enable:true}")
+    private Boolean enableXss;
 
     /**
      * @title extendMessageConverters

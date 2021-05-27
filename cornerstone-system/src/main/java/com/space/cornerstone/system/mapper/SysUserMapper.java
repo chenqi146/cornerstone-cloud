@@ -7,6 +7,7 @@ import com.space.cornerstone.system.domain.entity.SysUser;
 import com.space.cornerstone.system.domain.param.SysUserParam;
 import com.space.cornerstone.system.domain.vo.SysUserQueryVo;
 import com.space.cornerstone.system.domain.vo.UserVo;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 /**
@@ -16,6 +17,7 @@ import org.apache.ibatis.annotations.Param;
  * @Description SysUserMapper
  * @createTime 2021年05月22日 23:40:00
  */
+@Mapper
 public interface SysUserMapper extends BaseMapper<SysUser> {
 
     /**

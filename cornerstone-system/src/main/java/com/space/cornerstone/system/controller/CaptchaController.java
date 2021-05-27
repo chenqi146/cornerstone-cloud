@@ -6,7 +6,7 @@ import com.google.code.kaptcha.Producer;
 import com.space.cornerstone.framework.core.constant.Constant;
 import com.space.cornerstone.framework.core.domain.model.ReturnModel;
 import com.space.cornerstone.framework.core.exception.CaptchaException;
-import com.space.cornerstone.framework.core.redis.RedisClient;
+import com.space.cornerstone.framework.core.service.RedisClient;
 import com.space.cornerstone.system.domain.vo.CaptchaVo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.util.FastByteArrayOutputStream;

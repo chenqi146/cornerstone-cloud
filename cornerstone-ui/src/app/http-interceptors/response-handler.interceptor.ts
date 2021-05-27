@@ -17,7 +17,11 @@ export class ResponseHandlerInterceptor implements HttpInterceptor {
     return next.handle(req).pipe(
       // @ts-ignore
       filter(event => event instanceof HttpResponse && event.status === 200),
-      map((event: HttpResponse<any>) => event.clone({ body: event.body.data }))
+      map((event: HttpResponse<any>) => {
+        console.log(event);
+        console.log('event');
+        return event.clone({ body: event.body.data });
+      })
     );
   }
 }

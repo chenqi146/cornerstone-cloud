@@ -9,13 +9,14 @@ import com.fasterxml.jackson.databind.jsontype.impl.LaissezFaireSubTypeValidator
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
-import com.space.cornerstone.framework.core.redis.RedisClient;
+import com.space.cornerstone.framework.core.service.RedisClient;
 
 /**
  * RedisTemplateConfig
@@ -68,7 +69,7 @@ public class RedisTemplateConfig {
     }
 
 
-    @Bean
+    @Bean("redisClient")
     public RedisClient redisClient(@Qualifier("redisTemplate") RedisTemplate redisTemplate) {
         return new RedisClient(redisTemplate);
     }

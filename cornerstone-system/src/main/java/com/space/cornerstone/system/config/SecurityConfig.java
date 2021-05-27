@@ -1,9 +1,14 @@
-package com.space.cornerstone.system.security;
+package com.space.cornerstone.system.config;
 
+import com.space.cornerstone.system.security.AuthenticationEntryPointImpl;
+import com.space.cornerstone.system.security.LogoutSuccessHandlerImpl;
 import com.space.cornerstone.system.security.filter.JwtAuthenticationFilter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -26,31 +31,31 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     /**
      * 自定义用户认证逻辑
      */
-    @Resource
+    @Autowired
     private UserDetailsService userDetailsService;
 
     /**
      * 认证失败处理类
      */
-    @Resource
+    @Autowired
     private AuthenticationEntryPointImpl unauthorizedHandler;
 
     /**
      * 退出处理类
      */
-    @Resource
+    @Autowired
     private LogoutSuccessHandlerImpl logoutSuccessHandler;
 
     /**
      * token认证过滤器
      */
-    @Resource
+    @Autowired
     private JwtAuthenticationFilter authenticationTokenFilter;
 
     /**
      * 跨域过滤器
      */
-    @Resource
+    @Autowired
     private CorsFilter corsFilter;
 
     /**
@@ -59,7 +64,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      * @return
      * @throws Exception
      */
-    @Bean
+    @Bean(name = BeanIds.AUTHENTICATION_MANAGER)
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
@@ -119,7 +124,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         httpSecurity.addFilterBefore(corsFilter, JwtAuthenticationFilter.class);
         httpSecurity.addFilterBefore(corsFilter, LogoutFilter.class);
     }
-
 
     /**
      * 强散列哈希加密实现
