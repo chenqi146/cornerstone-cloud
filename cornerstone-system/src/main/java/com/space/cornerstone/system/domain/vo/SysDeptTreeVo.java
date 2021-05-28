@@ -3,6 +3,8 @@ package com.space.cornerstone.system.domain.vo;
 import com.space.cornerstone.framework.core.domain.entity.ActiveEntity;
 import lombok.Data;
 
+import java.util.Set;
+
 /**
  * @author chen qi
  * @version 1.0.0
@@ -42,5 +44,5 @@ public class SysDeptTreeVo extends ActiveEntity {
     /**
      * 子部门列表
      */
-    private SysDeptTreeVo childList;
+    private Set<SysDeptTreeVo> children;
 }

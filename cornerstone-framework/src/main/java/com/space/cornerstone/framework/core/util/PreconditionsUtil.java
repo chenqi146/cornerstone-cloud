@@ -14,8 +14,6 @@ import org.checkerframework.checker.nullness.qual.Nullable;
  */
 public final class PreconditionsUtil {
 
-    public static void main(String[] args) {
-    }
 
     public static <T> T checkNotNull(T t) {
         try {

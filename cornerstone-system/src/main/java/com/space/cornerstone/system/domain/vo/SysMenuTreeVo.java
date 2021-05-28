@@ -1,7 +1,10 @@
 package com.space.cornerstone.system.domain.vo;
 
+import cn.hutool.core.collection.CollUtil;
 import com.space.cornerstone.framework.core.domain.entity.ActiveEntity;
 import lombok.Data;
+
+import java.util.Set;
 
 /**
  * @author chen qi
@@ -72,5 +75,6 @@ public class SysMenuTreeVo extends ActiveEntity {
     /**
      * 子菜单列表
      */
-    private SysDeptTreeVo childList;
+    private Set<SysMenuTreeVo> children = CollUtil.newHashSet();
+
 }

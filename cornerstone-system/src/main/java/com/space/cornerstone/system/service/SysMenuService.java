@@ -3,6 +3,7 @@ package com.space.cornerstone.system.service;
 import com.space.cornerstone.system.domain.entity.SysMenu;
 import com.space.cornerstone.system.domain.entity.SysUser;
 import com.space.cornerstone.framework.core.service.BaseService;
+import com.space.cornerstone.system.domain.vo.SysMenuTreeVo;
 
 import java.util.Set;
 
@@ -23,4 +24,13 @@ public interface SysMenuService extends BaseService<SysMenu> {
      * @return : java.util.Set<java.lang.String>
      */
     Set<String> getMenuPermission(SysUser sysUser);
+
+    /**
+     * @Description
+     * @author chen qi
+     * @since 2021/5/28 14:36
+     * @return : java.util.Set<com.space.cornerstone.system.domain.vo.SysMenuTreeVo>
+     * @throws
+     */
+    Set<SysMenuTreeVo> getMenuTree();
 }

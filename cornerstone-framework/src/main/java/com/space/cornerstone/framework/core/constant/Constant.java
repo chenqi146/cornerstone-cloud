@@ -41,4 +41,6 @@ public final class Constant {
     public static final String USER_LOCK_KEY = "USER_LOCK_KEY";
     public static final Integer USER_LOCK_ERROR_LIMIT = 5;
 
+    public static final Long ROOT_ID = 0L;
+
 }
