@@ -1,6 +1,5 @@
 package com.space.cornerstone.framework.core.redis;
 
-import com.space.cornerstone.framework.core.service.RedisClient;
 import com.space.cornerstone.framework.core.util.RedisLockUtil;
 import lombok.extern.slf4j.Slf4j;
 

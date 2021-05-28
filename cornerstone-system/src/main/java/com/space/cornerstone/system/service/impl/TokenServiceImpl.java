@@ -6,7 +6,7 @@ import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.StrUtil;
 import com.space.cornerstone.framework.core.constant.Constant;
 import com.space.cornerstone.framework.core.domain.model.AuthUser;
-import com.space.cornerstone.framework.core.service.RedisClient;
+import com.space.cornerstone.framework.core.redis.RedisClient;
 import com.space.cornerstone.system.service.TokenService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

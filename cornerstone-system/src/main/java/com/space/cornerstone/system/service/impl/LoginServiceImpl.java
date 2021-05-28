@@ -9,13 +9,13 @@ import com.space.cornerstone.framework.core.domain.model.LoginUserDto;
 import com.space.cornerstone.framework.core.exception.BusinessException;
 import com.space.cornerstone.framework.core.exception.CaptchaException;
 import com.space.cornerstone.framework.core.exception.CaptchaExpireException;
-import com.space.cornerstone.framework.core.service.RedisClient;
+import com.space.cornerstone.framework.core.redis.RedisClient;
+import com.space.cornerstone.framework.core.util.IpUtil;
 import com.space.cornerstone.system.domain.entity.SysUser;
 import com.space.cornerstone.system.service.LoginService;
 import com.space.cornerstone.system.service.SysUserService;
 import com.space.cornerstone.system.service.TokenService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -67,7 +67,7 @@ public class LoginServiceImpl implements LoginService {
 
         String lockKey = Constant.USER_LOCK_KEY + StrUtil.COLON + username;
 
-        // 用户验证
+        // 用户验证  停用/删除/不存在都在UserDetailsServiceImpl中做了校验
         Authentication authentication;
         try {
             // 该方法会去调用UserDetailsServiceImpl.loadUserByUsername
@@ -93,9 +93,15 @@ public class LoginServiceImpl implements LoginService {
             throw new BusinessException(StrUtil.format("当前用户已被锁定,请{}分钟后再试!", Constant.USER_LOCK_TIME));
         }
 
-        // TODO: 2021/5/27  get Ip
-        lambda.set(SysUser::getLockFlag, Boolean.FALSE).set(SysUser::getLoginDate, LocalDateTime.now());
+        // update lock status
+        String requestIp = IpUtil.getRequestIp();
+        lambda.set(SysUser::getLoginIp, requestIp).set(SysUser::getLockFlag, Boolean.FALSE).set(SysUser::getLoginDate, LocalDateTime.now());
+        sysUserService.update(lambda);
 
+        userDto.setLoginDate(LocalDateTime.now());
+        userDto.setLoginIp(requestIp);
+        userDto.setLockFlag(Boolean.FALSE);
+        authUser.setUser(userDto);
         return tokenService.createToken(authUser);
     }
 

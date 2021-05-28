@@ -34,4 +34,10 @@ public interface SysUserMapper extends BaseMapper<SysUser> {
      * @return
      */
     IPage<SysUserQueryVo> findSysUserList(@Param("page") Page<SysUserQueryVo> page, @Param("param") SysUserParam param);
+
+    /**
+     * 根据用户名更新
+     * @param sysUser
+     */
+    void updateByUsername(SysUser sysUser);
 }

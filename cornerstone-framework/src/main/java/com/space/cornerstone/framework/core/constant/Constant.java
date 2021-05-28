@@ -13,10 +13,10 @@ public final class Constant {
     public static final Long PAGE_NUM = 1L;
 
 
-    public static final String CREATE_TIME = "CREATE_TIME";
-    public static final String UPDATE_TIME = "UPDATE_TIME";
-    public static final String UPDATE_BY = "UPDATE_BY";
-    public static final String CREATE_BY = "CREATE_BY";
+    public static final String CREATE_TIME = "createTime";
+    public static final String UPDATE_TIME = "updateTime";
+    public static final String UPDATE_BY = "updateBy";
+    public static final String CREATE_BY = "createBy";
 
 
     /**

@@ -23,8 +23,16 @@ public class LoginServiceImplTest {
 
     @Test
     public void test() {
-        final LambdaUpdateWrapper<SysUser> lambda = new UpdateWrapper<SysUser>().lambda().eq(SysUser::getUserName, "qqq").set(SysUser::getEmail, "aaa");
-        sysUserService.update(lambda);
-        System.out.println(JacksonUtil.toJson(lambda));
+        final LambdaUpdateWrapper<SysUser> lambda = new UpdateWrapper<SysUser>().lambda().eq(SysUser::getUserName, "qqq").set(SysUser::getEmail, "qqq111das");
+//        sysUserService.update(lambda);
+//        System.out.println(JacksonUtil.toJson(lambda));
+
+        SysUser sysUser = new SysUser();
+        sysUser.setId(1L);
+        sysUser.setPassword("ssss");
+        sysUser.setVersion(0);
+        sysUserService.updateById(sysUser);
+        System.out.println(JacksonUtil.toJson(sysUser));
+
     }
 }

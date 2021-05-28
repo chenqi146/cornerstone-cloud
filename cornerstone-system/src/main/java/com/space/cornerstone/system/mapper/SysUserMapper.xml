@@ -74,8 +74,36 @@
         <if test="param.endTime != null">
             AND U.CREATE_TIME <![CDATA[<=]]> #{param.endTime}
         </if>
-        <if test="param.nickname != null ">
-            AND U.NICK_NAME like concat('%', #{param.nickname} ,'%')
+        <if test="param.searchValue != null ">
+            AND U.NICK_NAME like concat('%', #{param.searchValue} ,'%')
         </if>
     </select>
+
+    <update id="updateByUsername">
+        UPDATE
+        SYS_USER
+        <set>
+            <if test="deptId != null">
+                DEPT_ID = #{deptId}
+            </if>
+            <if test="email != null and email != ''">
+                AND EMAIL = #{deptId}
+            </if>
+            <if test="phone != null and phone != ''">
+                AND PHONE = #{deptId}
+            </if>
+            <if test="sex != null">
+                AND SEX = #{deptId}
+            </if>
+            <if test="image != null and image != ''">
+                AND IMAGE = #{image}
+            </if>
+            <if test="image != null and image != ''">
+                AND LOGIN_IP = #{image}
+            </if>
+            <if test="image != null and image != ''">
+                AND LOGIN_DATE = #{image}
+            </if>
+        </set>
+    </update>
 </mapper>
