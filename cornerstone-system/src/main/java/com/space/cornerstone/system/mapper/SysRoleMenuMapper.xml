@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.space.cornerstone.system.mapper.SysRoleMenuMapper">
+  <resultMap id="BaseResultMap" type="com.space.cornerstone.system.domain.entity.SysRoleMenu">
+    <!--@mbg.generated-->
+    <!--@Table sys_role_menu-->
+    <id column="ROLE_ID" jdbcType="BIGINT" property="roleId" />
+    <id column="MENU_ID" jdbcType="BIGINT" property="menuId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    ROLE_ID, MENU_ID
+  </sql>
+</mapper>

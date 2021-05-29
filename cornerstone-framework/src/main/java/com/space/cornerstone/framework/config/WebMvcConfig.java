@@ -14,7 +14,7 @@ import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalTimeSerializer;
 import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
 import com.space.cornerstone.framework.core.enums.EnumConvertFactory;
-import com.space.cornerstone.framework.core.xss.XssJacksonSerializer;
+import com.space.cornerstone.framework.core.xss.XssJacksonDeserializer;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -70,7 +70,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
         // XSS序列化
         if (enableXss){
-            simpleModule.addSerializer(String.class, new XssJacksonSerializer());
+            simpleModule.addDeserializer(String.class, new XssJacksonDeserializer());
         }
 
         // jdk8日期序列化和反序列化设置

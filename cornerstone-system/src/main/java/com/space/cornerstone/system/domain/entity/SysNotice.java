@@ -4,8 +4,10 @@ import java.util.Date;
 
 import com.space.cornerstone.framework.core.domain.entity.ActiveEntity;
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 @Data
+@Accessors(chain = true)
 public class SysNotice extends ActiveEntity {
     private static final long serialVersionUID = -5130631718401778598L;
     /**

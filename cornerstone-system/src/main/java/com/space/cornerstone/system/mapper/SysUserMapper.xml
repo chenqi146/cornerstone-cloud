@@ -35,12 +35,33 @@
     </sql>
 
     <sql id="Alias_Column_List">
-        U.id,U.dept_id,U.user_name,U.nick_name,U.`type`,U.email,U.phone,U.sex,U.image,U.active,U.delete_flag,
+        U.id,U.dept_id,U.user_name,U.nick_name,U.`type`,U.email,U.phone,U.sex,U.image,U.PASSWORD,U.active,U.delete_flag,
         U.login_ip,U.login_date,U.version,U.lock_flag,U.remark,U.create_by,U.create_time,U.update_by,U.update_time
     </sql>
 
     <resultMap id="AuthInfo" type="com.space.cornerstone.system.domain.vo.UserVo">
-        <association property="user" javaType="com.space.cornerstone.system.domain.entity.SysUser" />
+        <association property="user" javaType="com.space.cornerstone.system.domain.entity.SysUser">
+            <id column="ID" property="id"/>
+            <result column="DEPT_ID" property="deptId"/>
+            <result column="USER_NAME" property="userName"/>
+            <result column="NICK_NAME" property="nickName"/>
+            <result column="TYPE" property="type"/>
+            <result column="EMAIL" property="email"/>
+            <result column="PHONE" property="phone"/>
+            <result column="SEX" property="sex"/>
+            <result column="IMAGE" property="image"/>
+            <result column="ACTIVE" property="active"/>
+            <result column="DELETE_FLAG" property="deleteFlag"/>
+            <result column="LOGIN_IP" property="loginIp"/>
+            <result column="LOGIN_DATE" property="loginDate"/>
+            <result column="LOCK_FLAG" property="lockFlag"/>
+            <result column="REMARK" property="remark"/>
+            <result column="CREATE_TIME" property="createTime"/>
+            <result column="UPDATE_TIME" property="updateTime"/>
+            <result column="CREATE_BY" property="createBy"/>
+            <result column="UPDATE_BY" property="updateBy"/>
+            <result column="VERSION" property="version"/>
+        </association>
         <collection property="menus" ofType="com.space.cornerstone.system.domain.vo.SysMenuTreeVo"/>
         <collection property="roles" ofType="com.space.cornerstone.system.domain.entity.SysRole"/>
     </resultMap>
@@ -48,13 +69,11 @@
     <select id="findAuthInfoByUserId" parameterType="long" resultMap="AuthInfo">
         SELECT
         <include refid="Alias_Column_List"/>
-        FROM SYS_USER                   U LEFT JOIN SYS_USER_ROLE UR ON U.ID = UR.USER_ID
-                LEFT JOIN SYS_ROLE      R ON UR.ROLE_ID = R.ID
-                LEFT JOIN SYS_ROLE_MENU RM ON R.ID = RM.ROLE_ID
-                LEFT JOIN SYS_MENU      M ON M.ID = RM.MENU_ID
-        WHERE R.ACTIVE = 1
-          AND M.ACTIVE = 1
-          AND U.ID = #{userId}
+        FROM SYS_USER               U LEFT JOIN SYS_USER_ROLE UR ON U.ID = UR.USER_ID
+        LEFT JOIN SYS_ROLE      R ON UR.ROLE_ID = R.ID AND R.ACTIVE = 1
+        LEFT JOIN SYS_ROLE_MENU RM ON R.ID = RM.ROLE_ID
+        LEFT JOIN SYS_MENU      M ON M.ID = RM.MENU_ID AND M.ACTIVE = 1
+        WHERE U.ID = #{userId}
     </select>
 
     <select id="findSysUserList" resultType="com.space.cornerstone.system.domain.vo.SysUserQueryVo">

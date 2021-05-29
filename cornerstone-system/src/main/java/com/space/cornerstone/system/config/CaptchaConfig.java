@@ -38,8 +38,8 @@ public class CaptchaConfig {
         properties.setProperty(KAPTCHA_TEXTPRODUCER_CHAR_LENGTH, "4");
         // 验证码文本字体样式 默认为new Font("Arial", 1, fontSize), new Font("Courier", 1, fontSize)
         properties.setProperty(KAPTCHA_TEXTPRODUCER_FONT_NAMES, "Arial,Courier");
-        // 图片样式 水纹com.google.code.kaptcha.com.space.cornerstone.system.service.impl.WaterRipple 鱼眼com.google.code.kaptcha.com.space.cornerstone.system.service.impl.FishEyeGimpy 阴影com.google.code.kaptcha.com.space.cornerstone.system.service.impl.ShadowGimpy
-        properties.setProperty(KAPTCHA_OBSCURIFICATOR_IMPL, "com.google.code.kaptcha.com.space.cornerstone.system.service.impl.ShadowGimpy");
+        // 图片样式 水纹com.google.code.kaptcha.WaterRipple 鱼眼com.google.code.kaptcha.FishEyeGimpy 阴影com.google.code.kaptcha.ShadowGimpy
+        properties.setProperty(KAPTCHA_OBSCURIFICATOR_IMPL, "com.google.code.kaptcha.impl.ShadowGimpy");
         Config config = new Config(properties);
         defaultKaptcha.setConfig(config);
         return defaultKaptcha;

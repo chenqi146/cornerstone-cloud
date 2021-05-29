@@ -28,6 +28,6 @@ public class AuthenticationEntryPointImpl implements AuthenticationEntryPoint, S
             throws IOException {
 
         String msg = StrUtil.format("此请求({})没有授权, 无法访问", request.getRequestURI());
-        ServletUtil.returnString(response, JacksonUtil.toJson(ReturnModel.message(CommonEnum.UNAUTHORIZED.getCode(), msg)));
+        ServletUtil.returnString(response, JacksonUtil.toJson(ReturnModel.message(CommonEnum.UNAUTHORIZED.getCode(), msg), true));
     }
 }

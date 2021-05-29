@@ -1,5 +1,6 @@
 package com.space.cornerstone.framework.core.util;
 
+import cn.hutool.core.util.StrUtil;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -7,6 +8,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.space.cornerstone.framework.core.exception.UtilException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
@@ -49,14 +51,28 @@ public class JacksonUtil {
      * @param obj 源对象
      */
     public static <T> String toJson(T obj) {
+        return toJson(obj, false);
+    }
+
+
+    /**
+     * 对象 => json字符串
+     *
+     * @param obj 源对象
+     */
+    public static <T> String toJson(T obj, boolean withDefaultPrettyPrinter) {
 
         String json = null;
         if (obj != null) {
             try {
-                json = om.writeValueAsString(obj);
+                if (withDefaultPrettyPrinter) {
+                    json = om.writerWithDefaultPrettyPrinter().writeValueAsString(obj);
+                } else {
+                    json = om.writeValueAsString(obj);
+                }
             } catch (JsonProcessingException e) {
-                log.warn(e.getMessage(), e);
-                throw new IllegalArgumentException(e.getMessage());
+                log.warn("对象转json异常, data: {}, error: ", obj, e);
+                throw new UtilException(e.getMessage());
             }
         }
         return json;
@@ -102,16 +118,19 @@ public class JacksonUtil {
     private static <T> T parse(String json, Class<T> clazz, TypeReference<T> type) {
 
         T obj = null;
-        if (!StringUtils.isEmpty(json)) {
+        if (StrUtil.isNotEmpty(json)) {
+            String name = null;
             try {
                 if (clazz != null) {
+                    name = clazz.getName();
                     obj = om.readValue(json, clazz);
                 } else {
+                    name = type.getClass().getName();
                     obj = om.readValue(json, type);
                 }
             } catch (IOException e) {
-                log.warn(e.getMessage(), e);
-                throw new IllegalArgumentException(e.getMessage());
+                log.warn("json转对象异常, data: {}, class: {}, error: ",  json, name, e);
+                throw new UtilException(e.getMessage());
             }
         }
         return obj;

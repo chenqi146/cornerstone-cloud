@@ -42,4 +42,33 @@ public interface SysUserService extends BaseService<SysUser> {
      */
     Paging<SysUserQueryVo> listPage(SysUserParam param);
 
+    /**
+     * @Description 新增用户 用户名,手机号,邮箱唯一
+     * @author chen qi
+     * @param sysUser
+     * @since 2021-05-29 10:29
+     * @throws com.space.cornerstone.framework.core.exception.BusinessException
+     */
+    void saveSysUser(SysUser sysUser);
+
+    /**
+     * @Description 编辑用户 用户名,手机号,邮箱唯一
+     * @author chen qi
+     * @param sysUser
+     * @since 2021-05-29 10:29
+     * @throws com.space.cornerstone.framework.core.exception.BusinessException
+     */
+    void updateSysUser(SysUser sysUser);
+
+    /**
+     * @Description  修改密码
+     * @author chen qi
+     * @param id
+     * @param oldPassword
+     * @param newPassword
+     * @since 2021-05-29 10:58
+     */
+    void updatePassword(Long id, String oldPassword, String newPassword);
+
+
 }

@@ -7,11 +7,9 @@ import com.space.cornerstone.framework.core.util.PreconditionsUtil;
 import com.space.cornerstone.system.domain.param.LoginParam;
 import com.space.cornerstone.system.domain.vo.UserVo;
 import com.space.cornerstone.system.service.LoginService;
+import com.space.cornerstone.system.service.SysUserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 /**
@@ -23,9 +21,11 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/login")
 public class LoginController extends BaseController {
 
     private final LoginService loginService;
+    private final SysUserService sysUserService;
 
     /**
      * @Description 登录接口
@@ -37,16 +37,15 @@ public class LoginController extends BaseController {
     @PostMapping("/login")
     public ReturnModel<String> login(@RequestBody LoginParam loginParam) {
 
-        PreconditionsUtil.checkArgument(StrUtil.isEmpty(loginParam.getS()) && StrUtil.isEmpty(loginParam.getD()), "用户名或密码不能为空");
+        PreconditionsUtil.checkArgument(StrUtil.isNotEmpty(loginParam.getS()) && StrUtil.isNotEmpty(loginParam.getD()), "用户名或密码不能为空");
         final String login = loginService.login(loginParam.getS(), loginParam.getD(), loginParam.getC(), loginParam.getU());
         return ReturnModel.ok(login);
     }
 
 
-    @GetMapping("")
+    @GetMapping("/getAuthUserInfo")
     public ReturnModel<UserVo> getAuthUserInfo(Long userId) {
-
-        return ReturnModel.ok();
+        return ReturnModel.ok(sysUserService.findAuthInfoByUserId(userId));
     }
 
 

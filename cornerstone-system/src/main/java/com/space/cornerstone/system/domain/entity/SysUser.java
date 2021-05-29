@@ -1,20 +1,24 @@
 package com.space.cornerstone.system.domain.entity;
 
 import cn.hutool.core.util.StrUtil;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.space.cornerstone.framework.core.constant.Constant;
 import com.space.cornerstone.framework.core.domain.entity.LogicDeleteEntity;
 import lombok.Data;
+import lombok.experimental.Accessors;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 /**
  * 用户表
  */
 @Data
+@Accessors(chain = true)
 public class SysUser extends LogicDeleteEntity {
     private static final long serialVersionUID = 6929137513399914731L;
 
@@ -71,16 +75,6 @@ public class SysUser extends LogicDeleteEntity {
     private String password;
 
     /**
-     * 帐号状态（1正常 0停用）
-     */
-    private Boolean active;
-
-    /**
-     * 删除标志（0代表存在 1代表删除）
-     */
-    private Boolean deleteFlag;
-
-    /**
      * 最后登录IP
      */
     private String loginIp;
@@ -99,6 +93,31 @@ public class SysUser extends LogicDeleteEntity {
      * 备注
      */
     private String remark;
+
+    /**
+     * 角色列表
+     */
+    @TableField(exist = false)
+    private List<SysRole> roles;
+
+    @JsonIgnore
+    public SysUser cloneUpdate() {
+        SysUser sysUser = new SysUser()
+                .setUserName(getUserName())
+                .setId(getId())
+                .setEmail(getEmail())
+                .setPhone(getPhone())
+                .setDeptId(getDeptId())
+                .setRoles(getRoles())
+                .setNickName(getNickName())
+                .setRemark(getRemark())
+                .setImage(getImage())
+                .setSex(getSex())
+                .setType(getType());
+        sysUser.setActive(getActive());
+        return sysUser;
+    }
+
 
     public boolean isAdmin() {
         if (StrUtil.isEmpty(type)) {

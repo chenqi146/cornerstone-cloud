@@ -3,8 +3,10 @@ package com.space.cornerstone.system.domain.entity;
 
 import com.space.cornerstone.framework.core.domain.entity.ActiveEntity;
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 @Data
+@Accessors(chain = true)
 public class SysDept extends ActiveEntity {
     private static final long serialVersionUID = 1030859409020401154L;
 

@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.Version;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
 
 import java.time.LocalDateTime;
 
@@ -16,6 +17,7 @@ import java.time.LocalDateTime;
  * @createTime 2021年05月18日 08:31:00
  */
 @Data
+@Accessors(chain = true)
 public class LocalEntity extends BaseEntity {
     private static final long serialVersionUID = -3341043990353711649L;
 

@@ -16,6 +16,7 @@ import com.space.cornerstone.system.service.LoginService;
 import com.space.cornerstone.system.service.SysUserService;
 import com.space.cornerstone.system.service.TokenService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -23,6 +24,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 /**
  * @author chen qi
@@ -31,6 +33,7 @@ import java.time.LocalDateTime;
  * @Description LoginServiceImpl
  * @createTime 2021年05月25日 22:10:00
  */
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class LoginServiceImpl implements LoginService {
@@ -55,7 +58,7 @@ public class LoginServiceImpl implements LoginService {
 
         // TODO: 2021-05-25 日志记录
         String captchaKey = Constant.CAPTCHA_CODE + uuid;
-        if (redisClient.hasKey(captchaKey)) {
+        if (!redisClient.hasKey(captchaKey)) {
             throw new CaptchaExpireException();
         }
 
@@ -82,6 +85,7 @@ public class LoginServiceImpl implements LoginService {
                 }
                 throw new BusinessException("用户或密码不正确");
             } else {
+                log.error("用户登录异常, username: {} ,error: ", username, e);
                 throw new BusinessException(e.getMessage());
             }
         }
@@ -89,7 +93,7 @@ public class LoginServiceImpl implements LoginService {
 
         // is locked, db is lock and redis has key
         final LoginUserDto userDto = authUser.getUser();
-        if (userDto.getLockFlag() && redisClient.hasKey(lockKey)) {
+        if (Objects.equals(userDto.getLockFlag(), Boolean.TRUE) && redisClient.hasKey(lockKey)) {
             throw new BusinessException(StrUtil.format("当前用户已被锁定,请{}分钟后再试!", Constant.USER_LOCK_TIME));
         }
 

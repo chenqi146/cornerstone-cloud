@@ -11,6 +11,7 @@ import com.space.cornerstone.system.domain.vo.CaptchaVo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.util.FastByteArrayOutputStream;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.imageio.ImageIO;
@@ -27,6 +28,7 @@ import java.util.concurrent.TimeUnit;
  */
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/captcha")
 public class CaptchaController {
 
     private final Producer captchaProducer;

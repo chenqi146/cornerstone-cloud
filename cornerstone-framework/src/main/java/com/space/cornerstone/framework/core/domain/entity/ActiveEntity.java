@@ -1,6 +1,7 @@
 package com.space.cornerstone.framework.core.domain.entity;
 
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 /**
  * @author chenqi
@@ -10,6 +11,7 @@ import lombok.Data;
  * @createTime 2021年05月18日 08:33:00
  */
 @Data
+@Accessors(chain = true)
 public class ActiveEntity extends LocalEntity {
     private static final long serialVersionUID = 3657064262310361571L;
 

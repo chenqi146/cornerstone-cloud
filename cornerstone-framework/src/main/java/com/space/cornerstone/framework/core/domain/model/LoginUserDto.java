@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.space.cornerstone.framework.core.constant.Constant;
 import com.space.cornerstone.framework.core.domain.entity.LogicDeleteEntity;
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -18,6 +19,7 @@ import java.util.Objects;
  * @createTime 2021年05月25日 20:32:00
  */
 @Data
+@Accessors(chain = true)
 public class LoginUserDto extends LogicDeleteEntity {
 
     private static final long serialVersionUID = 7713785267138287693L;
