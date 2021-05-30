@@ -1,6 +1,7 @@
 package com.space.cornerstone.framework.core.domain.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.space.cornerstone.framework.core.domain.entity.system.SysOperationLog;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -30,6 +31,11 @@ public class AuthUser implements UserDetails {
      * 过期时间
      */
     private Long expireTime;
+
+    /**
+     * 请求信息
+     */
+    private SysOperationLog operation;
 
     /**
      * 权限列表

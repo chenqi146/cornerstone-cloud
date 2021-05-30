@@ -18,6 +18,7 @@ public final class Auth {
     private static final ThreadLocal<Map<String, Object>> map = new InheritableThreadLocal<>();
 
     public static final String USER = "user";
+    public static final String REQUEST = "request";
 
     public static <T> T get(String key, Class<T> tClass) {
         Map<String, Object> objectMap = map.get();

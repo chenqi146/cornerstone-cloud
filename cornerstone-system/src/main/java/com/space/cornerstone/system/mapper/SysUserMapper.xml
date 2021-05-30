@@ -62,13 +62,46 @@
             <result column="UPDATE_BY" property="updateBy"/>
             <result column="VERSION" property="version"/>
         </association>
-        <collection property="menus" ofType="com.space.cornerstone.system.domain.vo.SysMenuTreeVo"/>
-        <collection property="roles" ofType="com.space.cornerstone.system.domain.entity.SysRole"/>
+        <collection property="menus" ofType="com.space.cornerstone.system.domain.vo.SysMenuTreeVo" columnPrefix="M_">
+            <id column="id" property="id"/>
+            <result column="name" property="name"/>
+            <result column="parent_id" property="parentId"/>
+            <result column="code" property="code"/>
+            <result column="sort" property="sort"/>
+            <result column="url" property="url"/>
+            <result column="component" property="component"/>
+            <result column="level" property="level"/>
+            <result column="menu_type" property="menuType"/>
+            <result column="icon" property="icon"/>
+            <result column="remark" property="remark"/>
+            <result column="active" property="active"/>
+            <result column="CREATE_TIME" property="createTime"/>
+            <result column="UPDATE_TIME" property="updateTime"/>
+            <result column="CREATE_BY" property="createBy"/>
+            <result column="UPDATE_BY" property="updateBy"/>
+        </collection>
+        <collection property="roles" ofType="com.space.cornerstone.system.domain.entity.SysRole" columnPrefix="R_">
+            <id column="id" property="id"/>
+            <result column="name" property="name"/>
+            <result column="code" property="code"/>
+            <result column="sort" property="sort"/>
+            <result column="remark" property="remark"/>
+            <result column="active" property="active"/>
+            <result column="CREATE_TIME" property="createTime"/>
+            <result column="UPDATE_TIME" property="updateTime"/>
+            <result column="CREATE_BY" property="createBy"/>
+            <result column="UPDATE_BY" property="updateBy"/>
+        </collection>
     </resultMap>
 
     <select id="findAuthInfoByUserId" parameterType="long" resultMap="AuthInfo">
         SELECT
-        <include refid="Alias_Column_List"/>
+        <include refid="Alias_Column_List"/>,
+        R.id R_id,R.name R_name,R.code R_code,R.sort R_sort,R.active R_active,R.CREATE_BY R_create_by,
+        R.CREATE_TIME R_create_time,R.UPDATE_BY R_update_by,R.UPDATE_TIME R_update_time,R.remark R_remark,
+        M.id M_id,M.`name` M_name,M.parent_id M_parent_id,M.code M_code,M.sort M_sort,M.url M_url,
+        M.component M_component,M.`level` M_level,M.menu_type M_menu_type,M.active M_active,M.icon M_icon,
+        M.create_by M_create_by,M.create_time M_create_time,M.update_by M_update_by,M.update_time M_update_time,M.remark M_remark
         FROM SYS_USER               U LEFT JOIN SYS_USER_ROLE UR ON U.ID = UR.USER_ID
         LEFT JOIN SYS_ROLE      R ON UR.ROLE_ID = R.ID AND R.ACTIVE = 1
         LEFT JOIN SYS_ROLE_MENU RM ON R.ID = RM.ROLE_ID

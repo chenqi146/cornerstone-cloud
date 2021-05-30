@@ -9,7 +9,6 @@
         <result column="code" jdbcType="VARCHAR" property="code"/>
         <result column="sort" jdbcType="INTEGER" property="sort"/>
         <result column="active" jdbcType="BOOLEAN" property="active"/>
-        <result column="delete_flag" jdbcType="BOOLEAN" property="deleteFlag"/>
         <result column="create_by" jdbcType="VARCHAR" property="createBy"/>
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
         <result column="update_by" jdbcType="VARCHAR" property="updateBy"/>
@@ -19,7 +18,11 @@
 
     <sql id="Base_Column_List">
         <!--@mbg.generated-->
-        ID, `NAME`, CODE, SORT, ACTIVE, DELETE_FLAG, CREATE_BY, CREATE_TIME, UPDATE_BY, UPDATE_TIME,
+        ID, `NAME`, CODE, SORT, ACTIVE, CREATE_BY, CREATE_TIME, UPDATE_BY, UPDATE_TIME,
         REMARK
+    </sql>
+
+    <sql id="Alias_Column_List">
+        R.id,R.`name`,R.code,R.sort,R.active,R.create_by,R.create_time,R.update_by,R.update_time,R.remark
     </sql>
 </mapper>

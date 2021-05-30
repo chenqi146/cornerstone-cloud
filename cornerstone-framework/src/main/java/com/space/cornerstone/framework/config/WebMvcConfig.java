@@ -60,9 +60,19 @@ public class WebMvcConfig implements WebMvcConfigurer {
      */
     @Override
     public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
-        MappingJackson2HttpMessageConverter jackson2HttpMessageConverter = new MappingJackson2HttpMessageConverter();
+        MappingJackson2HttpMessageConverter jackson2HttpMessageConverter = new MappingJackson2HttpMessageConverter(getObjectMapper());
+        converters.add(0, jackson2HttpMessageConverter);
 
-        ObjectMapper objectMapper = jackson2HttpMessageConverter.getObjectMapper();
+    }
+
+    /**
+     * @Description jackson配置
+     * @author chen qi
+     * @since 2021-05-30 10:01
+     * @return : com.fasterxml.jackson.databind.ObjectMapper
+     */
+    private ObjectMapper getObjectMapper() {
+        ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
         objectMapper.disable(DeserializationFeature.ADJUST_DATES_TO_CONTEXT_TIME_ZONE);
 
@@ -85,9 +95,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
         javaTimeModule.addDeserializer(LocalTime.class, new LocalTimeDeserializer(DateTimeFormatter.ofPattern(DatePattern.NORM_TIME_PATTERN)));
 
         objectMapper.registerModule(simpleModule).registerModule(javaTimeModule).registerModule(new ParameterNamesModule());
-
-        jackson2HttpMessageConverter.setObjectMapper(objectMapper);
-        converters.add(0, jackson2HttpMessageConverter);
+        return objectMapper;
     }
 
 

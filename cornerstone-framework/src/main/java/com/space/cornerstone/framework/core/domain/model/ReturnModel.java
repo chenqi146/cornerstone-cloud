@@ -43,7 +43,7 @@ public class ReturnModel<T> implements Serializable {
         this(status == 200, status, data);
     }
     public ReturnModel(int status, String message) {
-        this(status == 200, status, null, message);
+        this(status == 200, status, message, null);
     }
 
     public ReturnModel(T data) {
@@ -68,7 +68,7 @@ public class ReturnModel<T> implements Serializable {
         }
     }
 
-    public ReturnModel(boolean success, int status, T data, String message) {
+    public ReturnModel(boolean success, int status, String message, T data) {
         this.success = success;
         this.status = status;
         this.data = data;
@@ -118,6 +118,10 @@ public class ReturnModel<T> implements Serializable {
 
     public static ReturnModel<String> error(BaseErrorInfoInterface errorInfo) {
         return new ReturnModel<>(errorInfo.getCode(), errorInfo.getMessage());
+    }
+
+    public static <T> ReturnModel<T> error(BaseErrorInfoInterface errorInfo, T t) {
+        return new ReturnModel<>(errorInfo.getCode() == 200, errorInfo.getCode(), errorInfo.getMessage(), t);
     }
 
     public T getData() {

@@ -8,7 +8,6 @@ import com.space.cornerstone.framework.core.constant.Constant;
 import com.space.cornerstone.framework.core.domain.entity.LogicDeleteEntity;
 import lombok.Data;
 import lombok.experimental.Accessors;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDateTime;
 import java.util.List;

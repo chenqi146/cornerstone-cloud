@@ -263,7 +263,7 @@ public class RedisClient {
 
     public String mset(String... keysValues) {
         if (keysValues.length % 2 != 0) {
-            throw new RedisException(" wrong number of arguments for MSET; keysValues = " + keysValues);
+            throw new RedisException("wrong number of arguments for MSET; keysValues = " + keysValues);
         }
         Map<String, Object> kvMap = new HashMap<>();
         for (int i = 0; i < keysValues.length; i += 2) {
