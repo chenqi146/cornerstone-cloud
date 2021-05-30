@@ -1,7 +1,6 @@
 package com.space.cornerstone.framework.core.exception;
 
 /**
- * @program: autoexcel
  * @Interface: BaseErrorInfoInterface
  * @Description: BaseErrorInfoInterface
  * @Author: chen qi

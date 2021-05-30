@@ -10,7 +10,7 @@ public class CaptchaExpireException extends BaseException {
     private static final long serialVersionUID = -2303357122330162359L;
 
     public CaptchaExpireException() {
-        super();
+        super(CommonEnum.CAPTCHA_EXPIRE_CODE_EXCEPTION);
     }
     public CaptchaExpireException(String message) {
         super(message);

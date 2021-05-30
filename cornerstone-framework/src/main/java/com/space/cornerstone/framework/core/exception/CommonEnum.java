@@ -23,7 +23,7 @@ public enum CommonEnum implements BaseErrorInfoInterface, BaseEnum<Integer> {
     /**
      * 没有权限
      **/
-    NOT_PERMISSION(403, "没有权限"),
+    NOT_PERMISSION(403, "没有权限，请联系管理员授权"),
     /**
      * 你请求的资源不存在
      **/
@@ -43,7 +43,7 @@ public enum CommonEnum implements BaseErrorInfoInterface, BaseEnum<Integer> {
     /**
      * 请求参数校验异常
      **/
-    PARAMETER_EXCEPTION(5001, "请求参数校验异常"),
+    PARAM_CODE_EXCEPTION(5001, "请求参数校验异常"),
     /**
      * 请求参数解析异常
      **/
@@ -87,9 +87,29 @@ public enum CommonEnum implements BaseErrorInfoInterface, BaseEnum<Integer> {
 
     HTTP_REQUEST_METHOD_NOT_SUPPORTED_EXCEPTION(5108, "METHOD NOT SUPPORTED"),
     /**
-     * 获取验证码异常
+     * 验证码异常
      */
-    CAPTCHA_CODE_EXCEPTION(5109, "验证码异常"),
+    CAPTCHA_CODE_EXCEPTION(5109, "验证码校验异常"),
+    /**
+     * 验证码过期
+     */
+    CAPTCHA_EXPIRE_CODE_EXCEPTION(5110, "验证码过期"),
+    /**
+     * redis异常
+     */
+    REDIS_CODE_EXCEPTION(5111, "redis异常"),
+    /**
+     * 工具类处理异常
+     */
+    UTIL_CODE_EXCEPTION(5112, "工具类处理异常"),
+    /**
+     * 用户名不匹配
+     */
+    USERNAME_NOT_FOUND_CODE_EXCEPTION(5113, "用户名不匹配"),
+    /**
+     * 数据异常
+     */
+    DATA_ACCESS_CODE_EXCEPTION(5114, "数据异常"),
     ;
 
 
