@@ -3,9 +3,11 @@ package com.space.cornerstone.framework.core.domain.entity.system;
 import java.time.LocalDateTime;
 
 import lombok.Data;
+import lombok.experimental.Accessors;
 import org.springframework.http.HttpMethod;
 
 @Data
+@Accessors(chain = true)
 public class SysOperationLog {
     /**
      * 主键
@@ -15,7 +17,7 @@ public class SysOperationLog {
     /**
      * 请求ID
      */
-    private String requestId;
+    private String traceId;
 
     /**
      * 用户ID
@@ -38,12 +40,12 @@ public class SysOperationLog {
     private String ip;
 
     /**
-     * 区域
+     * 区域 暂定
      */
     private String area;
 
     /**
-     * 运营商
+     * 运营商 暂定
      */
     private String operator;
 
@@ -68,9 +70,9 @@ public class SysOperationLog {
     private String methodName;
 
     /**
-     * 请求方式，GET/POST
+     * 请求方式，
      */
-    private HttpMethod requestMethod;
+    private String requestMethod;
 
     /**
      * 内容类型
@@ -88,7 +90,7 @@ public class SysOperationLog {
     private String param;
 
     /**
-     * tokenMd5值
+     * token值
      */
     private String token;
 

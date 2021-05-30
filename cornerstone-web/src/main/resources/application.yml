@@ -1,3 +1,6 @@
+server:
+  servlet:
+    context-path: /cornerstone
 spring:
   jackson:
     #参数意义：

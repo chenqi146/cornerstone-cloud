@@ -18,6 +18,10 @@ public final class Constant {
     public static final String UPDATE_BY = "updateBy";
     public static final String CREATE_BY = "createBy";
 
+    /**
+     * traceId 跟踪请求
+     */
+    public static final String TRACE_ID = "traceId";
 
     /**
      * 令牌
