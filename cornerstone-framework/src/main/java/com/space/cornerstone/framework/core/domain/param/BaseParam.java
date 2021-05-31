@@ -18,18 +18,30 @@ import java.util.List;
 public abstract class BaseParam implements Serializable {
 
     private static final long serialVersionUID = 807526741192374002L;
-    private Long pageNum = Constant.PAGE_NUM;
+    /**
+     * 页码
+     */
+    protected Long pageNum = Constant.PAGE_NUM;
 
-    private Long pageSize = Constant.PAGE_SIZE;
+    /**
+     * 页面数量
+     */
+    protected Long pageSize = Constant.PAGE_SIZE;
 
-    private String searchValue;
+    /**
+     * 搜索值
+     */
+    protected String searchValue;
 
-    private List<OrderItem> orderItems;
+    /**
+     * 排序字段
+     */
+    protected List<OrderItem> orderItems;
 
     /**
      * 启用/停用  Y-启用
      */
-    private Boolean active;
+    protected Boolean active;
 
     public Long getPageNum(Long pageNum) {
         return (pageNum == null || pageNum <= 0) ? Constant.PAGE_NUM : pageNum;

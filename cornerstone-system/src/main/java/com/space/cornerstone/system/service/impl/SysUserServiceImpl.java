@@ -211,8 +211,26 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUserMapper, SysUser> 
         this.updateById(new SysUser().setId(id).setPassword(newPassword));
     }
 
-    public static void main(String[] args) {
-        System.out.println(new BCryptPasswordEncoder().encode("123456"));
-    }
 
+    /**
+     * 删除用户
+     *
+     * @param id
+     */
+    @Override
+    public void deleteById(Long id) {
+        PreconditionsUtil.checkArgument(id != null, "用户id不能为空");
+
+        final SysUser user = this.getById(id);
+
+        if (user == null) {
+            return;
+        }
+
+        if (Objects.equals(user.getDeleteFlag(), Boolean.FALSE)) {
+            return;
+        }
+
+        this.removeById(id);
+    }
 }

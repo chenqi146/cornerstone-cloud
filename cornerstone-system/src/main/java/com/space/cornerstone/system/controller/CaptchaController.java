@@ -20,10 +20,10 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @author chen qi
+ * 验证码接口
+ * @author cqmike
  * @version 1.0.0
  * @ClassName CaptchaController.java
- * @Description 验证码
  * @createTime 2021年05月25日 08:42:00
  */
 @RestController
@@ -35,9 +35,9 @@ public class CaptchaController {
     private final RedisClient redisClient;
 
     /**
-     * @Description 获取验证码
+     * 获取验证码
      * @author chen qi
-     * @since 2021-05-25 8:33
+     * @since 1.0.0
      * @return : com.space.cornerstone.framework.core.domain.model.ReturnModel<com.space.cornerstone.system.domain.vo.CaptchaVo>
      */
     @GetMapping("/getVerificationImage")

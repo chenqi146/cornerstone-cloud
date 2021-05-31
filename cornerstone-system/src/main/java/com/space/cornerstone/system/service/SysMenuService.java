@@ -26,11 +26,10 @@ public interface SysMenuService extends BaseService<SysMenu> {
     Set<String> getMenuPermission(SysUser sysUser);
 
     /**
-     * @Description 获取菜单树
+     * @Description 获取菜单权限树
      * @author chen qi
      * @since 2021/5/28 14:36
      * @return : java.util.Set<com.space.cornerstone.system.domain.vo.SysMenuTreeVo>
-     * @throws
      */
     Set<SysMenuTreeVo> getMenuTree();
 }

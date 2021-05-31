@@ -23,6 +23,7 @@ public interface SysUserService extends BaseService<SysUser> {
      */
     SysUser getByUsername(String username);
 
+
     /**
      * @Description 查询用户授权信息
      * @author chen qi
@@ -33,6 +34,7 @@ public interface SysUserService extends BaseService<SysUser> {
      */
     UserVo findAuthInfoByUserId(Long userId);
 
+
     /**
      * @Description  查询用户列表 分页
      * @author chen qi 
@@ -41,6 +43,7 @@ public interface SysUserService extends BaseService<SysUser> {
      * @return : com.space.cornerstone.framework.core.domain.model.Paging<com.space.cornerstone.system.domain.entity.SysUser>
      */
     Paging<SysUserQueryVo> listPage(SysUserParam param);
+
 
     /**
      * @Description 新增用户 用户名,手机号,邮箱唯一
@@ -51,6 +54,7 @@ public interface SysUserService extends BaseService<SysUser> {
      */
     void saveSysUser(SysUser sysUser);
 
+
     /**
      * @Description 编辑用户 用户名,手机号,邮箱唯一
      * @author chen qi
@@ -59,6 +63,7 @@ public interface SysUserService extends BaseService<SysUser> {
      * @throws com.space.cornerstone.framework.core.exception.BusinessException
      */
     void updateSysUser(SysUser sysUser);
+
 
     /**
      * @Description  修改密码
@@ -70,5 +75,9 @@ public interface SysUserService extends BaseService<SysUser> {
      */
     void updatePassword(Long id, String oldPassword, String newPassword);
 
-
+    /**
+     * 删除用户
+     * @param id
+     */
+    void deleteById(Long id);
 }
