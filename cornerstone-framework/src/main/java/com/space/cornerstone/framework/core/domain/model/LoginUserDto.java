@@ -72,7 +72,7 @@ public class LoginUserDto extends LogicDeleteEntity {
      * 密码
      */
     @JsonIgnore
-    @JsonProperty
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
     /**

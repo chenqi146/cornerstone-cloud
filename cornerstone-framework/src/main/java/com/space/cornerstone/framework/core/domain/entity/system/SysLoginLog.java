@@ -2,19 +2,27 @@ package com.space.cornerstone.framework.core.domain.entity.system;
 
 import java.time.LocalDateTime;
 import java.util.Date;
+
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
 
 @Data
+@Accessors(chain = true)
+@EqualsAndHashCode
 public class SysLoginLog {
     /**
      * 主键
      */
+    @TableId(type = IdType.AUTO)
     private Long id;
 
     /**
      * 请求ID
      */
-    private String requestId;
+    private String traceId;
 
     /**
      * 用户名称
@@ -27,17 +35,17 @@ public class SysLoginLog {
     private String ip;
 
     /**
-     * 区域
+     * 区域 暂定
      */
     private String area;
 
     /**
-     * 运营商
+     * 运营商 暂定
      */
     private String operator;
 
     /**
-     * tokenMd5值
+     * token值
      */
     private String token;
 

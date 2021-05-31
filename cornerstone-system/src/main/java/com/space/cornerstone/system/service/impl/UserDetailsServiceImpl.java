@@ -2,6 +2,7 @@ package com.space.cornerstone.system.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.StrUtil;
+import com.space.cornerstone.framework.core.auth.Auth;
 import com.space.cornerstone.framework.core.domain.model.AuthUser;
 import com.space.cornerstone.framework.core.domain.model.LoginUserDto;
 import com.space.cornerstone.framework.core.util.PreconditionsUtil;

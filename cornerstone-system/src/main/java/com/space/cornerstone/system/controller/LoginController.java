@@ -1,8 +1,10 @@
 package com.space.cornerstone.system.controller;
 
 import cn.hutool.core.util.StrUtil;
+import com.space.cornerstone.framework.core.annotation.Log;
 import com.space.cornerstone.framework.core.controller.BaseController;
 import com.space.cornerstone.framework.core.domain.model.ReturnModel;
+import com.space.cornerstone.framework.core.enums.OperationLogType;
 import com.space.cornerstone.framework.core.util.PreconditionsUtil;
 import com.space.cornerstone.system.domain.param.LoginParam;
 import com.space.cornerstone.system.domain.vo.UserVo;
@@ -34,6 +36,7 @@ public class LoginController extends BaseController {
      * @since 2021/5/27 12:48
      * @return : com.space.cornerstone.framework.core.domain.model.ReturnModel<java.lang.String>
      */
+    @Log(name = "登录", type = OperationLogType.LOGIN)
     @PostMapping("/login")
     public ReturnModel<String> login(@RequestBody LoginParam loginParam) {
 
@@ -42,7 +45,7 @@ public class LoginController extends BaseController {
         return ReturnModel.ok(login);
     }
 
-
+    @Log(name = "查询用户权限信息", type = OperationLogType.query)
     @GetMapping("/getAuthUserInfo")
     public ReturnModel<UserVo> getAuthUserInfo(Long userId) {
         return ReturnModel.ok(sysUserService.findAuthInfoByUserId(userId));

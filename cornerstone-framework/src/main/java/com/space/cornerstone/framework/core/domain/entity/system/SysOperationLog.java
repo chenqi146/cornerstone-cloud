@@ -2,16 +2,21 @@ package com.space.cornerstone.framework.core.domain.entity.system;
 
 import java.time.LocalDateTime;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 import org.springframework.http.HttpMethod;
 
 @Data
 @Accessors(chain = true)
+@EqualsAndHashCode
 public class SysOperationLog {
     /**
      * 主键
      */
+    @TableId(type = IdType.AUTO)
     private Long id;
 
     /**
@@ -27,7 +32,7 @@ public class SysOperationLog {
     /**
      * 用户名称
      */
-    private String userName;
+    private String username;
 
     /**
      * 日志名称
@@ -95,7 +100,7 @@ public class SysOperationLog {
     private String token;
 
     /**
-     * 0:其它,1:新增,2:修改,3:删除,4:详情查询,5:所有列表,6:分页列表,7:其它查询,8:上传文件
+     * @see com.space.cornerstone.framework.core.enums.OperationLogType
      */
     private Integer type;
 

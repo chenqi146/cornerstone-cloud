@@ -106,6 +106,28 @@ public class RedisClient {
     }
 
 
+    /**
+     * 指定缓存失效时间
+     *
+     * @param key  键
+     * @param time 时间
+     * @param timeUnit 单位
+     * @return
+     */
+
+    public boolean expire(String key, int time, TimeUnit timeUnit) {
+        try {
+            if (time > 0) {
+                redisTemplate.expire(key, time, timeUnit);
+            }
+            return true;
+        } catch (Exception e) {
+            log.error("expire: key={}, time={}", key, time, e);
+            throw new RedisException(e);
+        }
+    }
+
+
     public void rename(String key, String newKey) {
         redisTemplate.rename(key, newKey);
     }

@@ -44,9 +44,4 @@ public @interface Log {
      */
     String remark() default "";
 
-    /**
-     *  是否是登录登出
-     *  0-普通请求 1-登录  2-登出
-     */
-    int authType() default 0;
 }

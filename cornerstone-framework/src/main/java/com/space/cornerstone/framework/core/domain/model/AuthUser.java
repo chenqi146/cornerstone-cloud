@@ -1,8 +1,10 @@
 package com.space.cornerstone.framework.core.domain.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.space.cornerstone.framework.core.domain.entity.system.SysOperationLog;
 import lombok.Data;
+import lombok.experimental.Accessors;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -17,6 +19,7 @@ import java.util.Set;
  * @createTime 2021年05月21日 23:46:00
  */
 @Data
+@Accessors(chain = true)
 public class AuthUser implements UserDetails {
     private static final long serialVersionUID = 5093381636633535037L;
 
@@ -24,6 +27,8 @@ public class AuthUser implements UserDetails {
      * 用户唯一标识
      */
     private String token;
+
+    private String traceId;
 
     private LoginUserDto user;
 
@@ -56,6 +61,7 @@ public class AuthUser implements UserDetails {
         return null;
     }
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Override
     public String getPassword() {
         return user == null ? null : user.getPassword();

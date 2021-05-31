@@ -3,7 +3,9 @@ package com.space.cornerstone.system.service.impl;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+import com.space.cornerstone.framework.core.auth.Auth;
 import com.space.cornerstone.framework.core.constant.Constant;
+import com.space.cornerstone.framework.core.domain.entity.system.SysLoginLog;
 import com.space.cornerstone.framework.core.domain.model.AuthUser;
 import com.space.cornerstone.framework.core.domain.model.LoginUserDto;
 import com.space.cornerstone.framework.core.exception.BusinessException;
@@ -25,6 +27,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author chen qi
@@ -56,7 +59,6 @@ public class LoginServiceImpl implements LoginService {
     @Override
     public String login(String username, String password, String code, String uuid) {
 
-        // TODO: 2021-05-25 日志记录
         String captchaKey = Constant.CAPTCHA_CODE + uuid;
         if (!redisClient.hasKey(captchaKey)) {
             throw new CaptchaExpireException();
@@ -78,8 +80,8 @@ public class LoginServiceImpl implements LoginService {
                     .authenticate(new UsernamePasswordAuthenticationToken(username, password));
         } catch (Exception e) {
             if (e instanceof BadCredentialsException) {
-                // TODO: 2021/5/27 record password error num
                 final long lockNum = redisClient.incr(lockKey);
+                redisClient.expire(lockKey, Constant.USER_LOCK_TIME, TimeUnit.MINUTES);
                 if (lockNum > Constant.USER_LOCK_ERROR_LIMIT) {
                     sysUserService.update(lambda.set(SysUser::getLockFlag, Boolean.TRUE));
                 }
@@ -90,6 +92,7 @@ public class LoginServiceImpl implements LoginService {
             }
         }
         AuthUser authUser = (AuthUser) authentication.getPrincipal();
+        Auth.setUser(authUser);
 
         // is locked, db is lock and redis has key
         final LoginUserDto userDto = authUser.getUser();

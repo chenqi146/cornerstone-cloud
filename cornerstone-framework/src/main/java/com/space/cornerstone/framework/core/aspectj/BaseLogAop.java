@@ -1,28 +1,41 @@
 package com.space.cornerstone.framework.core.aspectj;
 
+import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.map.MapUtil;
+import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.http.useragent.UserAgent;
 import cn.hutool.http.useragent.UserAgentUtil;
 import cn.hutool.json.JSONObject;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.space.cornerstone.framework.core.annotation.Log;
 import com.space.cornerstone.framework.core.annotation.LogModule;
 import com.space.cornerstone.framework.core.auth.Auth;
 import com.space.cornerstone.framework.core.constant.Constant;
+import com.space.cornerstone.framework.core.domain.entity.system.SysLoginLog;
 import com.space.cornerstone.framework.core.domain.entity.system.SysOperationLog;
 import com.space.cornerstone.framework.core.domain.model.AuthUser;
+import com.space.cornerstone.framework.core.domain.model.LoginUserDto;
+import com.space.cornerstone.framework.core.domain.model.ReturnModel;
+import com.space.cornerstone.framework.core.enums.OperationLogType;
 import com.space.cornerstone.framework.core.exception.BaseException;
+import com.space.cornerstone.framework.core.service.SysLoginLogService;
+import com.space.cornerstone.framework.core.service.SysOperationLogService;
 import com.space.cornerstone.framework.core.util.IpUtil;
 import com.space.cornerstone.framework.core.util.JacksonUtil;
+import lombok.RequiredArgsConstructor;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -33,9 +46,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -46,7 +61,10 @@ import java.util.regex.Pattern;
  * @Description BaseLogAop
  * @createTime 2021年05月30日 12:56:00
  */
-public abstract class BaseLogAop {
+@Aspect
+@Component
+@RequiredArgsConstructor
+public class BaseLogAop {
 
     private static final Logger log = LoggerFactory.getLogger(BaseLogAop.class);
 
@@ -59,12 +77,28 @@ public abstract class BaseLogAop {
      */
     private static final int MAX_LENGTH = 2000;
 
+    @Value("${id.workerId:1}")
+    private Long workerId;
+
+    @Value("${id.datacenterId:1}")
+    private Long datacenterId;
+
+    private final SysLoginLogService sysLoginLogService;
+    private final SysOperationLogService sysOperationLogService;
+
+
+    /**
+     * 切点
+     */
+    private static final String POINTCUT =
+            "execution(public * com.space.cornerstone..*.controller..*.*(..))";
+
     // 配置织入点
     @Pointcut("@annotation(com.space.cornerstone.framework.core.annotation.Log)")
     public void logPointCut() {
     }
 
-    @Around("logPointCut()")
+    @Around(POINTCUT)
     public Object doAround(ProceedingJoinPoint joinPoint) throws Throwable {
         SysOperationLog operationLog = new SysOperationLog();
 
@@ -98,7 +132,6 @@ public abstract class BaseLogAop {
             String path = request.getRequestURI();
             log.info("request ===> ip=[{}], url=[{}], param=[{}]", ipAddr, path, paramObject);
 
-
             Log annotation = method.getAnnotation(Log.class);
             if (annotation == null) {
                 return joinPoint.proceed();
@@ -106,11 +139,14 @@ public abstract class BaseLogAop {
 
             AuthUser user = Auth.getUser();
             if (user == null) {
-                return joinPoint.proceed();
+                if (Objects.equals(annotation.type(), OperationLogType.LOGIN)) {
+                    Map<String, Object> map = JacksonUtil.parse(JacksonUtil.toJson(paramObject), new TypeReference<Map<String, Object>>() {
+                    });
+                    user = new AuthUser().setUser(new LoginUserDto().setUserName(MapUtil.getStr(map, Constant.LOGIN_USERNAME_PARAM)));
+                } else {
+                    return joinPoint.proceed();
+                }
             }
-            // TODO: 2021-05-31 登录请求日志
-            int authType = annotation.authType();
-
 
             LogModule logModule = method.getAnnotation(LogModule.class);
             if (logModule != null) {
@@ -118,6 +154,9 @@ public abstract class BaseLogAop {
             }
 
             String traceId = request.getHeader(Constant.TRACE_ID);
+            if (StrUtil.isEmpty(traceId)) {
+                traceId = IdUtil.createSnowflake(workerId, datacenterId).nextIdStr();
+            }
             String contentType = request.getHeader(HttpHeaders.CONTENT_TYPE);
 
             String userAgent = request.getHeader(HttpHeaders.USER_AGENT);
@@ -125,6 +164,9 @@ public abstract class BaseLogAop {
 
             String param = StrUtil.sub(JacksonUtil.toJson(paramObject), ZERO, MAX_LENGTH);
             operationLog.setPath(path)
+                    .setUpdateTime(LocalDateTime.now())
+                    .setCreateTime(LocalDateTime.now())
+                    .setType(annotation.type().getCode())
                     .setParam(param)
                     .setName(annotation.name())
                     .setToken(user.getToken())
@@ -133,7 +175,7 @@ public abstract class BaseLogAop {
                     .setContentType(contentType)
                     .setTraceId(traceId)
                     .setUserId(user.getUser().getId())
-                    .setUserName(user.getUsername());
+                    .setUsername(user.getUsername());
 
             operationLog.setBrowserName(agent.getBrowser().getName())
                     .setBrowserVersion(agent.getVersion())
@@ -154,10 +196,15 @@ public abstract class BaseLogAop {
         } catch (Exception e) {
             log.error("aop处理日志异常: error: ", e);
         }
+        Integer type = operationLog.getType();
 
         try {
             Object proceed = joinPoint.proceed();
-            operationLog.setMessage(JacksonUtil.toJson(proceed));
+            if (proceed instanceof ReturnModel) {
+                ReturnModel<?> returnModel = (ReturnModel<?>) proceed;
+                operationLog.setMessage(returnModel.getMessage())
+                        .setCode(returnModel.getStatus());
+            }
             return proceed;
         } catch (Throwable throwable) {
 
@@ -165,11 +212,25 @@ public abstract class BaseLogAop {
             throwableMessage = StrUtil.sub(throwableMessage, ZERO, MAX_LENGTH);
             if (throwable instanceof BaseException) {
                 BaseException baseException = (BaseException) throwable;
-                operationLog.setCode(baseException.getErrorCode()).setSuccess(Boolean.FALSE);
+                operationLog.setCode(baseException.getErrorCode());
             }
-            operationLog.setExceptionMessage(throwableMessage).setExceptionName(throwable.getClass().getName());
-            // TODO: 2021-05-31 异步入库
+            operationLog.setExceptionMessage(throwableMessage).setExceptionName(throwable.getClass().getName()).setSuccess(Boolean.FALSE);
             throw throwable;
+        } finally {
+            try {
+                // 记录日志
+                if (Objects.equals(OperationLogType.LOGIN.getCode(), type)) {
+                    SysLoginLog sysLoginLog = new SysLoginLog();
+                    BeanUtil.copyProperties(operationLog, sysLoginLog);
+                    AuthUser user = Auth.getUser();
+                    sysLoginLog.setToken(user == null ? null : user.getToken());
+                    sysLoginLogService.asyncSaveLog(sysLoginLog);
+                } else {
+                    sysOperationLogService.asyncSaveLog(operationLog);
+                }
+            } catch (Exception e) {
+                log.error("切面存储日志异常, error: ", e);
+            }
         }
 
     }

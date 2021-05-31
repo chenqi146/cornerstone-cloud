@@ -156,6 +156,7 @@ public class TokenServiceImpl implements TokenService {
         authUser.setExpireTime(System.currentTimeMillis() + expireTime * DateUnit.MINUTE.getMillis());
         // 根据uuid将loginUser缓存
         String userKey = getTokenKey(authUser.getToken());
+        authUser.getUser().setPassword(null);
         redisClient.setex(userKey, authUser, expireTime, TimeUnit.MINUTES);
     }
 }

@@ -9,6 +9,11 @@ package com.space.cornerstone.framework.core.constant;
  */
 public final class Constant {
 
+    /**
+     * 登录请求 用户名字段
+     */
+    public static final String LOGIN_USERNAME_PARAM = "s";
+
     public static final Long PAGE_SIZE = 10L;
     public static final Long PAGE_NUM = 1L;
 
@@ -46,5 +51,10 @@ public final class Constant {
     public static final Integer USER_LOCK_ERROR_LIMIT = 5;
 
     public static final Long ROOT_ID = 0L;
+
+    public static final Integer LOGIN_TYPE = 1;
+    public static final Integer LOGOUT_TYPE = 2;
+
+    public static final String ASYNC_EXECUTOR = "asyncTaskExecutor";
 
 }
