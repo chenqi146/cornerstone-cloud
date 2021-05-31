@@ -1,9 +1,22 @@
 {
   "outPath": "./src/main/resources/doc",
-  "errorCodeDictionaries": [{
-    "title": "响应码",
-    "enumClassName": "com.space.cornerstone.framework.core.exception.CommonEnum",
-    "codeField": "code",
-    "descField": "message"
-  }]
+  "allInOne": true,
+  "errorCodeDictionaries": [
+    {
+      "title": "响应码",
+      "enumClassName": "com.space.cornerstone.framework.core.exception.CommonEnum",
+      "codeField": "code",
+      "descField": "message"
+    }
+  ],
+  "requestHeaders": [
+    {
+      "name": "token",
+      "type": "string",
+      "desc": "用户token",
+      "value": "dwqdqwdwqdqwdqwdqwdqw",
+      "required": false,
+      "since": "1.0.0"
+    }
+  ]
 }

@@ -13,6 +13,8 @@ import com.space.cornerstone.system.service.SysUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.constraints.NotNull;
+
 
 /**
  * @author chen qi
@@ -45,9 +47,17 @@ public class LoginController extends BaseController {
         return ReturnModel.ok(login);
     }
 
+
+    /**
+     * 获取用户权限信息
+     * @author chen qi
+     * @param userId 用户id
+     * @since 2021/5/31 15:39
+     * @return : com.space.cornerstone.framework.core.domain.model.ReturnModel<com.space.cornerstone.system.domain.vo.UserVo>
+     */
     @Log(name = "查询用户权限信息", type = OperationLogType.query)
     @GetMapping("/getAuthUserInfo")
-    public ReturnModel<UserVo> getAuthUserInfo(Long userId) {
+    public ReturnModel<UserVo> getAuthUserInfo(@NotNull Long userId) {
         return ReturnModel.ok(sysUserService.findAuthInfoByUserId(userId));
     }
 
