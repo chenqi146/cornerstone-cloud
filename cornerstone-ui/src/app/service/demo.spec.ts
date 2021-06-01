@@ -5,7 +5,7 @@ import {
   HttpTestingController
 } from '@angular/common/http/testing';
 import { DataService } from './data.service';
-import { ResponseHandlerInterceptor } from '../http-interceptors/response-handler.interceptor';
+import { ResponseHandlerInterceptor } from '../common/http-interceptors/response-handler.interceptor';
 
 describe('DataService', () => {
     let httpClient: HttpClient;
@@ -30,12 +30,6 @@ describe('DataService', () => {
             { name: 'Bob', website: 'www.yessss.com' },
             { name: 'Juliette', website: 'nope.com' }
           ];
-          dataService.getData().subscribe((event: HttpEvent<any>) => {
-            switch (event.type) {
-              case HttpEventType.Response:
-                expect(event.body).toEqual(mockUsers);
-            }
-          });
 
           const mockReq = httpMock.expectOne(dataService.url);
 

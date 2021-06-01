@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
 
 import { HttpClientModule } from '@angular/common/http';
-import { HttpInterceptorProviders } from './http-interceptors';
+import { HttpInterceptorProviders } from './common/http-interceptors';
 
 @NgModule({
   declarations: [
