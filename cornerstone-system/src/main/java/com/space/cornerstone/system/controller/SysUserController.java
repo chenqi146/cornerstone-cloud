@@ -1,7 +1,10 @@
 package com.space.cornerstone.system.controller;
 
+import com.space.cornerstone.framework.core.annotation.Log;
 import com.space.cornerstone.framework.core.controller.BaseController;
+import com.space.cornerstone.framework.core.domain.model.Paging;
 import com.space.cornerstone.framework.core.domain.model.ReturnModel;
+import com.space.cornerstone.framework.core.enums.OperationLogType;
 import com.space.cornerstone.system.domain.param.SysUserParam;
 import com.space.cornerstone.system.domain.vo.SysUserQueryVo;
 import com.space.cornerstone.system.service.SysUserService;
@@ -24,15 +27,16 @@ public class SysUserController extends BaseController {
 
     /**
      * 分页获取用户列表
-     * @author chen qi
+     * @author cqmike
      * @param sysUserParam sysUserParam
-     * @since 2021/5/31 15:46
-     * @return : com.space.cornerstone.framework.core.domain.model.ReturnModel<com.space.cornerstone.system.domain.vo.SysUserQueryVo>
+     * @since 2021-06-01 23:15
+     * @return : com.space.cornerstone.framework.core.domain.model.ReturnModel<com.space.cornerstone.framework.core.domain.model.Paging<com.space.cornerstone.system.domain.vo.SysUserQueryVo>>
+     * @throws
      */
+    @Log(name = "系统用户分页列表", type = OperationLogType.PAGE)
     @GetMapping("/list")
-    public ReturnModel<SysUserQueryVo> list(SysUserParam sysUserParam) {
-
-
-        return ReturnModel.ok();
+    public ReturnModel<Paging<SysUserQueryVo>> list(SysUserParam sysUserParam) {
+        Paging<SysUserQueryVo> sysUserQueryVoPaging = sysUserService.listPage(sysUserParam);
+        return ReturnModel.ok(sysUserQueryVoPaging);
     }
 }
