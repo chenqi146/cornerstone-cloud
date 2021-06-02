@@ -8,14 +8,20 @@ import { MatSliderModule } from '@angular/material/slider';
 
 import { HttpClientModule } from '@angular/common/http';
 import { HttpInterceptorProviders } from './common/http-interceptors';
+import { LayoutModule } from './layout/layout.module';
+import { AuthRoutingModule } from './routes/auth/auth-routing.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
+    LayoutModule,
+    AuthRoutingModule,
     BrowserModule,
     AppRoutingModule,
+    RouterModule,
     MatSliderModule,
     BrowserAnimationsModule,
     HttpClientModule,
