@@ -61,6 +61,18 @@
             <result column="CREATE_BY" property="createBy"/>
             <result column="UPDATE_BY" property="updateBy"/>
             <result column="VERSION" property="version"/>
+            <collection property="roles" ofType="com.space.cornerstone.system.domain.entity.SysRole" columnPrefix="R_">
+                <id column="id" property="id"/>
+                <result column="name" property="name"/>
+                <result column="code" property="code"/>
+                <result column="sort" property="sort"/>
+                <result column="remark" property="remark"/>
+                <result column="active" property="active"/>
+                <result column="CREATE_TIME" property="createTime"/>
+                <result column="UPDATE_TIME" property="updateTime"/>
+                <result column="CREATE_BY" property="createBy"/>
+                <result column="UPDATE_BY" property="updateBy"/>
+            </collection>
         </association>
         <collection property="menus" ofType="com.space.cornerstone.system.domain.vo.SysMenuTreeVo" columnPrefix="M_">
             <id column="id" property="id"/>
@@ -73,18 +85,6 @@
             <result column="level" property="level"/>
             <result column="menu_type" property="menuType"/>
             <result column="icon" property="icon"/>
-            <result column="remark" property="remark"/>
-            <result column="active" property="active"/>
-            <result column="CREATE_TIME" property="createTime"/>
-            <result column="UPDATE_TIME" property="updateTime"/>
-            <result column="CREATE_BY" property="createBy"/>
-            <result column="UPDATE_BY" property="updateBy"/>
-        </collection>
-        <collection property="roles" ofType="com.space.cornerstone.system.domain.entity.SysRole" columnPrefix="R_">
-            <id column="id" property="id"/>
-            <result column="name" property="name"/>
-            <result column="code" property="code"/>
-            <result column="sort" property="sort"/>
             <result column="remark" property="remark"/>
             <result column="active" property="active"/>
             <result column="CREATE_TIME" property="createTime"/>

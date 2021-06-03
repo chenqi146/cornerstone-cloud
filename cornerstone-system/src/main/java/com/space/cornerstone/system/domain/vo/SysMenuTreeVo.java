@@ -2,6 +2,7 @@ package com.space.cornerstone.system.domain.vo;
 
 import cn.hutool.core.collection.CollUtil;
 import com.space.cornerstone.framework.core.domain.entity.ActiveEntity;
+import com.space.cornerstone.system.enums.MenuType;
 import lombok.Data;
 
 import java.util.Set;
@@ -60,7 +61,7 @@ public class SysMenuTreeVo extends ActiveEntity {
     /**
      * 菜单类型（M目录 C菜单 F按钮）
      */
-    private String menuType;
+    private MenuType menuType;
 
     /**
      * 菜单图标

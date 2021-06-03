@@ -39,6 +39,10 @@ public class LoginUserDto extends LogicDeleteEntity {
     private String userName;
 
     /**
+     * 登录来源 默认0 -本地
+     */
+    private Integer source;
+    /**
      * 用户昵称
      */
     private String nickName;

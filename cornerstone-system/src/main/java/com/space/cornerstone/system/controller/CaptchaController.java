@@ -3,7 +3,7 @@ package com.space.cornerstone.system.controller;
 import cn.hutool.core.codec.Base64;
 import cn.hutool.core.util.IdUtil;
 import com.google.code.kaptcha.Producer;
-import com.space.cornerstone.framework.core.constant.Constant;
+import com.space.cornerstone.system.constant.SysConstant;
 import com.space.cornerstone.framework.core.domain.model.ReturnModel;
 import com.space.cornerstone.framework.core.exception.CaptchaException;
 import com.space.cornerstone.framework.core.redis.RedisClient;
@@ -45,12 +45,12 @@ public class CaptchaController {
 
         // 保存验证码信息
         String uuid = IdUtil.simpleUUID();
-        String verifyKey = Constant.CAPTCHA_CODE + uuid;
+        String verifyKey = SysConstant.CAPTCHA_CODE + uuid;
 
         String capStr = captchaProducer.createText();
         BufferedImage image = captchaProducer.createImage(capStr);
 
-        redisClient.setex(verifyKey, capStr, Constant.CAPTCHA_EXPIRATION, TimeUnit.MINUTES);
+        redisClient.setex(verifyKey, capStr, SysConstant.CAPTCHA_EXPIRATION, TimeUnit.MINUTES);
         // 转换流信息写出
         FastByteArrayOutputStream os = new FastByteArrayOutputStream();
         try {

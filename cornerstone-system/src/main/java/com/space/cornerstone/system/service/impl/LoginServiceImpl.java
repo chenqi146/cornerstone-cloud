@@ -4,8 +4,7 @@ import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.space.cornerstone.framework.core.auth.Auth;
-import com.space.cornerstone.framework.core.constant.Constant;
-import com.space.cornerstone.framework.core.domain.entity.system.SysLoginLog;
+import com.space.cornerstone.system.constant.SysConstant;
 import com.space.cornerstone.framework.core.domain.model.AuthUser;
 import com.space.cornerstone.framework.core.domain.model.LoginUserDto;
 import com.space.cornerstone.framework.core.exception.BusinessException;
@@ -59,7 +58,7 @@ public class LoginServiceImpl implements LoginService {
     @Override
     public String login(String username, String password, String code, String uuid) {
 
-        String captchaKey = Constant.CAPTCHA_CODE + uuid;
+        String captchaKey = SysConstant.CAPTCHA_CODE + uuid;
         if (!redisClient.hasKey(captchaKey)) {
             throw new CaptchaExpireException();
         }
@@ -70,7 +69,7 @@ public class LoginServiceImpl implements LoginService {
         }
         final LambdaUpdateWrapper<SysUser> lambda = new UpdateWrapper<SysUser>().lambda().eq(SysUser::getUserName, username);
 
-        String lockKey = Constant.USER_LOCK_KEY + StrUtil.COLON + username;
+        String lockKey = SysConstant.USER_LOCK_KEY + StrUtil.COLON + username;
 
         // 用户验证  停用/删除/不存在都在UserDetailsServiceImpl中做了校验
         Authentication authentication;
@@ -81,8 +80,8 @@ public class LoginServiceImpl implements LoginService {
         } catch (Exception e) {
             if (e instanceof BadCredentialsException) {
                 final long lockNum = redisClient.incr(lockKey);
-                redisClient.expire(lockKey, Constant.USER_LOCK_TIME, TimeUnit.MINUTES);
-                if (lockNum > Constant.USER_LOCK_ERROR_LIMIT) {
+                redisClient.expire(lockKey, SysConstant.USER_LOCK_TIME, TimeUnit.MINUTES);
+                if (lockNum > SysConstant.USER_LOCK_ERROR_LIMIT) {
                     sysUserService.update(lambda.set(SysUser::getLockFlag, Boolean.TRUE));
                 }
                 throw new BusinessException("用户或密码不正确");
@@ -97,7 +96,7 @@ public class LoginServiceImpl implements LoginService {
         // is locked, db is lock and redis has key
         final LoginUserDto userDto = authUser.getUser();
         if (Objects.equals(userDto.getLockFlag(), Boolean.TRUE) && redisClient.hasKey(lockKey)) {
-            throw new BusinessException(StrUtil.format("当前用户已被锁定,请{}分钟后再试!", Constant.USER_LOCK_TIME));
+            throw new BusinessException(StrUtil.format("当前用户已被锁定,请{}分钟后再试!", SysConstant.USER_LOCK_TIME));
         }
 
         // update lock status

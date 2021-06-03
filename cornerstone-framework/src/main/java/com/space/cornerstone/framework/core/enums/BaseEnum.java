@@ -4,28 +4,20 @@ package com.space.cornerstone.framework.core.enums;
  * @author chen qi
  * @version 1.0.0
  * @InterfaceName BaseEnum.java
- * @Description TODO
+ * @Description BaseEnum
  * @createTime 2021年05月18日 08:38:00
  */
 public interface BaseEnum<T> {
 
     /**
-     * @title getCode
-     * @description
+     * 获取标识  可在controller直接转换
      * @author chen qi
-     * @updateTime 2021-05-18 8:41
-     * @return: T
-     * @throws
      */
     T getCode();
 
     /**
-     * @title getMessage
-     * @description  获取枚举 描述
+     *  获取枚举 描述
      * @author chen qi
-     * @updateTime 2021-05-18 8:42
-     * @return: java.lang.String
-     * @throws
      */
     String getMessage();
 

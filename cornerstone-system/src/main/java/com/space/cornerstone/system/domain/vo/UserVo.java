@@ -26,9 +26,4 @@ public class UserVo {
      */
     private Set<SysMenuTreeVo> menus;
 
-    /**
-     * 用户角色信息列表
-     */
-    private Set<SysRole> roles;
-
 }

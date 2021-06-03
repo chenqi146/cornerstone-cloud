@@ -1,7 +1,5 @@
 package com.space.cornerstone.system.domain.vo;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -31,6 +29,10 @@ public class SysUserQueryVo {
      */
     private String userName;
 
+    /**
+     * 登录来源 默认0 -本地
+     */
+    private Integer source;
     /**
      * 用户昵称
      */

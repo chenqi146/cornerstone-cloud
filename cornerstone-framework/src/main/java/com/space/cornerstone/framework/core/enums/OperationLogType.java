@@ -37,7 +37,7 @@ public enum OperationLogType implements BaseEnum<Integer> {
     /**
      * 修改
      **/
-    UPDATE(2, "修改"),
+    UPDATE(2, "编辑"),
     /**
      * 删除
      **/

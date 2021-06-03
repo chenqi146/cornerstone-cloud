@@ -1,8 +1,7 @@
 package com.space.cornerstone.system.domain.entity;
 
-import java.util.Date;
-
 import com.space.cornerstone.framework.core.domain.entity.ActiveEntity;
+import com.space.cornerstone.system.enums.MenuType;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -51,9 +50,9 @@ public class SysMenu extends ActiveEntity {
     private Integer level;
 
     /**
-     * 菜单类型（M目录 C菜单 F按钮）
+     * 菜单类型（DIR目录 MENU菜单 BUTTON按钮）
      */
-    private String menuType;
+    private MenuType menuType;
 
     /**
      * 菜单图标

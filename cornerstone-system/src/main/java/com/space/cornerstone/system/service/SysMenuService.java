@@ -32,4 +32,31 @@ public interface SysMenuService extends BaseService<SysMenu> {
      * @return : java.util.Set<com.space.cornerstone.system.domain.vo.SysMenuTreeVo>
      */
     Set<SysMenuTreeVo> getMenuTree();
+
+    /**
+     * 新增菜单
+     *
+     * @author cqmike
+     * @param sysMenu
+     * @since 2021/6/3 11:44
+     */
+    void saveMenu(SysMenu sysMenu);
+
+    /**
+     * 编辑菜单
+     *
+     * @author cqmike
+     * @param sysMenu
+     * @since 2021/6/3 11:44
+     */
+    void updateMenu(SysMenu sysMenu);
+
+    /**
+     * 根据id删除菜单及其子菜单
+     *
+     * @author cqmike
+     * @param id
+     * @since 2021/6/3 18:28
+     */
+    void deleteById(Long id);
 }
