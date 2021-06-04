@@ -211,6 +211,22 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUserMapper, SysUser> 
         this.updateById(new SysUser().setId(id).setPassword(newPassword));
     }
 
+    /**
+     * 重置密码
+     *
+     * @param id
+     * @param newPassword
+     * @author chen qi
+     * @since 2021-05-29 10:58
+     */
+    @Override
+    public void resetPassword(Long id, String newPassword) {
+        PreconditionsUtil.checkArgument(id != null && StrUtil.isNotEmpty(newPassword), "id||newPassword参数不能为空");
+
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        newPassword = encoder.encode(newPassword);
+        this.updateById(new SysUser().setId(id).setPassword(newPassword));
+    }
 
     /**
      * 删除用户

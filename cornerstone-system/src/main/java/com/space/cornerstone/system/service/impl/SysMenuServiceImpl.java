@@ -1,6 +1,5 @@
 package com.space.cornerstone.system.service.impl;
 
-import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.StrUtil;
 import com.space.cornerstone.framework.core.constant.Constant;
@@ -61,23 +60,20 @@ public class SysMenuServiceImpl extends BaseServiceImpl<SysMenuMapper, SysMenu> 
 
         List<SysMenu> menuList = this.list();
 
-        Map<Long, SysMenuTreeVo> convertMap = menuList.stream().collect(Collectors.toMap(SysMenu::getId, m -> {
-            SysMenuTreeVo vo = new SysMenuTreeVo();
-            BeanUtil.copyProperties(m, vo);
-            return vo;
-        }, (k1, k2) -> k1));
+        Map<Long, SysMenuTreeVo> convertMap = menuList.stream()
+                .collect(Collectors.toMap(SysMenu::getId, SysMenuTreeVo::convert, (k1, k2) -> k1));
 
         for (SysMenu menu : menuList) {
             final SysMenuTreeVo parent = convertMap.get(menu.getParentId());
             if (parent == null) {
                 continue;
             }
-            SysMenuTreeVo treeVo = new SysMenuTreeVo();
-            BeanUtil.copyProperties(menu, treeVo);
+            SysMenuTreeVo treeVo = SysMenuTreeVo.convert(menu);
             parent.getChildren().add(treeVo);
         }
 
-        return convertMap.values().stream().filter(m -> Objects.equals(m.getParentId(), Constant.ROOT_ID)).collect(Collectors.toSet());
+        return convertMap.values().stream().filter(Objects::nonNull)
+                .filter(m -> Objects.equals(m.getParentId(), Constant.ROOT_ID)).collect(Collectors.toSet());
     }
 
     /**
@@ -106,6 +102,7 @@ public class SysMenuServiceImpl extends BaseServiceImpl<SysMenuMapper, SysMenu> 
             final SysMenu parent = Optional.ofNullable(this.getById(parentId)).orElseThrow(() -> new BusinessException("此父级菜单已经被删除"));
             sysMenu.setLevel(parent.getLevel());
         } else {
+            sysMenu.setParentId(Constant.ROOT_ID);
             sysMenu.setLevel(SysConstant.LEVEL_ROOT);
         }
 

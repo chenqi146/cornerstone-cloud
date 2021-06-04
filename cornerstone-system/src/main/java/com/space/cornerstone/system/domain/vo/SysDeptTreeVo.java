@@ -1,9 +1,13 @@
 package com.space.cornerstone.system.domain.vo;
 
+import cn.hutool.core.bean.BeanUtil;
 import com.space.cornerstone.framework.core.domain.entity.ActiveEntity;
+import com.space.cornerstone.system.domain.entity.SysDept;
 import lombok.Data;
 
+import java.util.Comparator;
 import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * @author chen qi
@@ -44,5 +48,15 @@ public class SysDeptTreeVo extends ActiveEntity {
     /**
      * 子部门列表
      */
-    private Set<SysDeptTreeVo> children;
+    private Set<SysDeptTreeVo> children = new TreeSet<>(Comparator.comparing(SysDeptTreeVo::getSort));
+
+
+    public static SysDeptTreeVo convert(SysDept sysDept) {
+        if (sysDept == null) {
+            return null;
+        }
+        final SysDeptTreeVo vo = new SysDeptTreeVo();
+        BeanUtil.copyProperties(sysDept, vo);
+        return vo;
+    }
 }
