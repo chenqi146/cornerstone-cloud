@@ -147,26 +147,37 @@ public class SysMenuServiceImpl extends BaseServiceImpl<SysMenuMapper, SysMenu> 
         }
 
         final List<SysMenu> menuList = this.list();
+        Map<Long, List<SysMenu>> menuMap = menuList.stream().collect(Collectors.groupingBy(SysMenu::getParentId));
 
-        List<Long> allIdList = CollUtil.newArrayList();
-        collectTreeIdList(allIdList, menuList, id);
+        Set<Long> allIdSet = CollUtil.newHashSet(id);
+        collectTreeIdList(allIdSet, menuMap, id);
 
+        this.removeByIds(allIdSet);
     }
 
     /**
      * 获取当前节点的所有子节点id
      *
      * @author cqmike
-     * @param allIdList
-     * @param menuList
+     * @param allIdSet
+     * @param menuMap k-> parentId
      * @param currentId
      * @since 2021/6/3 19:03
      */
-    private void collectTreeIdList(List<Long> allIdList, List<SysMenu> menuList, Long currentId) {
+    private void collectTreeIdList(Set<Long> allIdSet, Map<Long, List<SysMenu>> menuMap, Long currentId) {
 
-        if (CollUtil.isEmpty(menuList)) {
+        if (CollUtil.isEmpty(menuMap)) {
             return;
         }
 
+        List<SysMenu> children = menuMap.get(currentId);
+        if (CollUtil.isEmpty(children)) {
+            return;
+        }
+
+        for (SysMenu child : children) {
+            allIdSet.add(child.getId());
+            collectTreeIdList(allIdSet, menuMap, child.getId());
+        }
     }
 }

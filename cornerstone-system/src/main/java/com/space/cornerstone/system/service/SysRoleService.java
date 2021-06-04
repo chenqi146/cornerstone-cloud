@@ -4,7 +4,6 @@ import com.space.cornerstone.framework.core.domain.model.Paging;
 import com.space.cornerstone.framework.core.service.BaseService;
 import com.space.cornerstone.system.domain.entity.SysRole;
 import com.space.cornerstone.system.domain.param.SysRoleParam;
-import com.space.cornerstone.system.domain.vo.SysRoleQueryVo;
 
 /**
  * @author chen qi
@@ -21,8 +20,7 @@ public interface SysRoleService extends BaseService<SysRole> {
      * @author cqmike
      * @param sysRoleParam
      * @since 2021/6/3 12:48
-     * @return : com.space.cornerstone.framework.core.domain.model.Paging<com.space.cornerstone.system.domain.vo.SysRoleQueryVo>
      */
-    Paging<SysRoleQueryVo> listPage(SysRoleParam sysRoleParam);
+    Paging<SysRole> listPage(SysRoleParam sysRoleParam);
 
 }

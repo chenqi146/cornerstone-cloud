@@ -7,9 +7,12 @@ import com.space.cornerstone.framework.core.domain.model.ReturnModel;
 import com.space.cornerstone.framework.core.enums.OperationLogType;
 import com.space.cornerstone.framework.core.validator.groups.Add;
 import com.space.cornerstone.framework.core.validator.groups.Update;
+import com.space.cornerstone.system.domain.entity.SysRole;
 import com.space.cornerstone.system.domain.entity.SysUser;
+import com.space.cornerstone.system.domain.param.SysRoleParam;
 import com.space.cornerstone.system.domain.param.SysUserParam;
 import com.space.cornerstone.system.domain.vo.SysUserQueryVo;
+import com.space.cornerstone.system.service.SysRoleService;
 import com.space.cornerstone.system.service.SysUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
@@ -27,6 +30,7 @@ import org.springframework.web.bind.annotation.*;
 public class SysUserController extends BaseController {
 
     private final SysUserService sysUserService;
+    private final SysRoleService sysRoleService;
 
     /**
      * 分页获取用户列表

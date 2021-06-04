@@ -102,7 +102,6 @@ public class BaseLogAop {
     public Object doAround(ProceedingJoinPoint joinPoint) throws Throwable {
         SysOperationLog operationLog = new SysOperationLog();
 
-        try {
             // 获取当前的HttpServletRequest对象
             ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
             HttpServletRequest request = attributes.getRequest();
@@ -148,6 +147,7 @@ public class BaseLogAop {
                 }
             }
 
+        try {
             LogModule logModule = method.getAnnotation(LogModule.class);
             if (logModule != null) {
                 operationLog.setModule(StrUtil.isEmpty(logModule.name()) ? logModule.value() : logModule.name());
@@ -192,7 +192,6 @@ public class BaseLogAop {
                     .setRequestBody(isRequestBody)
                     .setMethodName(method.getName());
 
-
         } catch (Exception e) {
             log.error("aop处理日志异常: error: ", e);
         }
@@ -222,7 +221,7 @@ public class BaseLogAop {
                 if (Objects.equals(OperationLogType.LOGIN.getCode(), type)) {
                     SysLoginLog sysLoginLog = new SysLoginLog();
                     BeanUtil.copyProperties(operationLog, sysLoginLog);
-                    AuthUser user = Auth.getUser();
+                    user = Auth.getUser();
                     sysLoginLog.setToken(user == null ? null : user.getToken());
                     sysLoginLogService.asyncSaveLog(sysLoginLog);
                 } else {
