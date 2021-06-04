@@ -1,8 +1,10 @@
 package com.space.cornerstone.system.service.impl;
 
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.space.cornerstone.framework.core.domain.model.Paging;
 import com.space.cornerstone.framework.core.service.impl.BaseServiceImpl;
 import com.space.cornerstone.system.domain.entity.SysRole;
+import com.space.cornerstone.system.domain.param.SysRoleParam;
+import com.space.cornerstone.system.domain.vo.SysRoleQueryVo;
 import com.space.cornerstone.system.mapper.SysRoleMapper;
 import com.space.cornerstone.system.service.SysRoleService;
 import lombok.RequiredArgsConstructor;
@@ -20,4 +22,16 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class SysRoleServiceImpl extends BaseServiceImpl<SysRoleMapper, SysRole> implements SysRoleService {
+    /**
+     * 获取角色分页列表
+     *
+     * @param sysRoleParam
+     * @return : com.space.cornerstone.framework.core.domain.model.Paging<com.space.cornerstone.system.domain.vo.SysRoleQueryVo>
+     * @author cqmike
+     * @since 2021/6/3 12:48
+     */
+    @Override
+    public Paging<SysRoleQueryVo> listPage(SysRoleParam sysRoleParam) {
+        return null;
+    }
 }

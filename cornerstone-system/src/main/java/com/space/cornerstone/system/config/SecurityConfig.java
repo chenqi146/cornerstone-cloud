@@ -4,7 +4,6 @@ import com.space.cornerstone.system.security.AuthenticationEntryPointImpl;
 import com.space.cornerstone.system.security.LogoutSuccessHandlerImpl;
 import com.space.cornerstone.system.security.filter.JwtAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -96,7 +95,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // 过滤请求
                 .authorizeRequests()
                 // 对于登录login 验证码captchaImage 允许匿名访问
-                .antMatchers("/login/login", "/captcha/getVerificationImage").anonymous()
+                .antMatchers("/login/login", "/test/**", "/captcha/getVerificationImage").anonymous()
                 .antMatchers(
                         HttpMethod.GET,
                         "/*.html",

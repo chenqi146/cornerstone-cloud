@@ -64,7 +64,6 @@ public interface SysUserService extends BaseService<SysUser> {
      */
     void updateSysUser(SysUser sysUser);
 
-
     /**
      * @Description  修改密码
      * @author chen qi
@@ -74,6 +73,15 @@ public interface SysUserService extends BaseService<SysUser> {
      * @since 2021-05-29 10:58
      */
     void updatePassword(Long id, String oldPassword, String newPassword);
+
+    /**
+     * 重置密码
+     * @author chen qi
+     * @param id
+     * @param newPassword
+     * @since 2021-05-29 10:58
+     */
+    void resetPassword(Long id, String newPassword);
 
     /**
      * 删除用户

@@ -1,11 +1,14 @@
 package com.space.cornerstone.system.domain.vo;
 
-import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.bean.BeanUtil;
 import com.space.cornerstone.framework.core.domain.entity.ActiveEntity;
+import com.space.cornerstone.system.domain.entity.SysMenu;
 import com.space.cornerstone.system.enums.MenuType;
 import lombok.Data;
 
+import java.util.Comparator;
 import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * @author chen qi
@@ -76,6 +79,15 @@ public class SysMenuTreeVo extends ActiveEntity {
     /**
      * 子菜单列表
      */
-    private Set<SysMenuTreeVo> children = CollUtil.newHashSet();
+    private Set<SysMenuTreeVo> children = new TreeSet<>(Comparator.comparing(SysMenuTreeVo::getSort));
 
+
+    public static SysMenuTreeVo convert(SysMenu sysMenu) {
+        if (sysMenu == null) {
+            return null;
+        }
+        final SysMenuTreeVo vo = new SysMenuTreeVo();
+        BeanUtil.copyProperties(sysMenu, vo);
+        return vo;
+    }
 }

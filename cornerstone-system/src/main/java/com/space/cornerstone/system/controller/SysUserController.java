@@ -81,9 +81,9 @@ public class SysUserController extends BaseController {
      * @author cqmike
      * @since 2021/6/3 11:21
      */
-    @Log(name = "删除用户", type = OperationLogType.ADD)
-    @DeleteMapping("/delete/{userId}")
-    public ReturnModel<Void> delete(@PathVariable("userId") Long id) {
+    @Log(name = "删除用户", type = OperationLogType.DELETE)
+    @DeleteMapping("/delete/{id}")
+    public ReturnModel<Void> delete(@PathVariable("id") Long id) {
         sysUserService.deleteById(id);
         return ReturnModel.ok();
     }

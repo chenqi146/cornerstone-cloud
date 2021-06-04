@@ -25,4 +25,31 @@ public interface SysDeptService extends BaseService<SysDept> {
     Set<SysDeptTreeVo> getDeptTree();
 
 
+    /**
+     * 新增部门
+     *
+     * @author cqmike
+     * @param sysDept
+     * @since 2021/6/3 11:44
+     */
+    void saveDept(SysDept sysDept);
+
+    /**
+     * 编辑部门
+     *
+     * @author cqmike
+     * @param sysDept
+     * @since 2021/6/3 11:44
+     */
+    void updateDept(SysDept sysDept);
+
+    /**
+     * 根据id删除部门及其子部门
+     *
+     * @author cqmike
+     * @param id
+     * @since 2021/6/3 18:28
+     */
+    void deleteById(Long id);
+
 }
