@@ -1,4 +1,4 @@
-package com.space.cornerstone.system.service;
+package com.space.cornerstone.framework.core.service;
 
 import com.space.cornerstone.framework.core.domain.entity.system.SysConfig;
 import com.space.cornerstone.framework.core.service.BaseService;

@@ -1,13 +1,16 @@
 package com.space.cornerstone.system.service.impl;
 
+import cn.hutool.core.collection.CollUtil;
 import com.space.cornerstone.framework.core.constant.Constant;
 import com.space.cornerstone.framework.core.exception.BusinessException;
 import com.space.cornerstone.framework.core.service.impl.BaseServiceImpl;
 import com.space.cornerstone.system.domain.entity.SysDept;
+import com.space.cornerstone.system.domain.entity.SysMenu;
 import com.space.cornerstone.system.domain.vo.SysDeptTreeVo;
 import com.space.cornerstone.system.mapper.SysDeptMapper;
 import com.space.cornerstone.system.service.SysDeptService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -20,6 +23,7 @@ import java.util.stream.Collectors;
  * @createTime 2021年05月25日 22:01:00
  */
 @Service
+@Transactional(rollbackFor = Exception.class)
 public class SysDeptServiceImpl extends BaseServiceImpl<SysDeptMapper, SysDept> implements SysDeptService {
     /**
      * 获取部门树
@@ -102,5 +106,50 @@ public class SysDeptServiceImpl extends BaseServiceImpl<SysDeptMapper, SysDept> 
     @Override
     public void deleteById(Long id) {
 
+        if (id == null) {
+            return;
+        }
+
+        final SysDept sysMenu = this.getById(id);
+        if (sysMenu == null) {
+            return;
+        }
+
+        final List<SysDept> menuList = this.list();
+        Map<Long, List<SysDept>> menuMap = menuList.stream().collect(Collectors.groupingBy(SysDept::getParentId));
+
+        Set<Long> allIdSet = CollUtil.newHashSet(id);
+        collectTreeIdList(allIdSet, menuMap, id);
+
+        this.removeByIds(allIdSet);
+    }
+
+
+
+    /**
+     * 获取当前节点的所有子节点id
+     *
+     * @author cqmike
+     * @param allIdSet
+     * @param deptMap
+     * @param currentId
+     * @since 1.0.0
+     * @return
+     */
+    private void collectTreeIdList(Set<Long> allIdSet, Map<Long, List<SysDept>> deptMap, Long currentId) {
+
+        if (CollUtil.isEmpty(deptMap)) {
+            return;
+        }
+
+        List<SysDept> children = deptMap.get(currentId);
+        if (CollUtil.isEmpty(children)) {
+            return;
+        }
+
+        for (SysDept child : children) {
+            allIdSet.add(child.getId());
+            collectTreeIdList(allIdSet, deptMap, child.getId());
+        }
     }
 }

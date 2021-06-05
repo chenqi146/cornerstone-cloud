@@ -50,4 +50,9 @@ public final class Constant {
 
     public static final String ASYNC_EXECUTOR = "asyncTaskExecutor";
 
+    /**
+     * 字典缓存前缀
+     */
+    public static final String DICT = "DICT:";
+
 }

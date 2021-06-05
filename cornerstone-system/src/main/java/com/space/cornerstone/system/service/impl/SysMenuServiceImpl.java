@@ -15,6 +15,7 @@ import com.space.cornerstone.system.mapper.SysMenuMapper;
 import com.space.cornerstone.system.service.SysMenuService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -28,6 +29,7 @@ import java.util.stream.Collectors;
  */
 @Service
 @RequiredArgsConstructor
+@Transactional(rollbackFor = Exception.class)
 public class SysMenuServiceImpl extends BaseServiceImpl<SysMenuMapper, SysMenu> implements SysMenuService {
 
     /**

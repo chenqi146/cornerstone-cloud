@@ -3,7 +3,11 @@ package com.space.cornerstone.system.service;
 import com.space.cornerstone.framework.core.domain.model.Paging;
 import com.space.cornerstone.framework.core.service.BaseService;
 import com.space.cornerstone.system.domain.entity.SysRole;
+import com.space.cornerstone.system.domain.entity.SysRoleMenu;
 import com.space.cornerstone.system.domain.param.SysRoleParam;
+import com.space.cornerstone.system.domain.param.SysRoleUpdateParam;
+
+import java.util.Set;
 
 /**
  * @author chen qi
@@ -23,4 +27,23 @@ public interface SysRoleService extends BaseService<SysRole> {
      */
     Paging<SysRole> listPage(SysRoleParam sysRoleParam);
 
+    /**
+     * 编辑或新增角色
+     *
+     * @author cqmike
+     * @param param
+     * @since 1.0.0
+     * @return
+     */
+    void saveOrUpdateRole(SysRoleUpdateParam param);
+
+    /**
+     * 删除角色
+     *
+     * @author cqmike
+     * @param id
+     * @since 1.0.0
+     * @return
+     */
+    void deleteById(Long id);
 }

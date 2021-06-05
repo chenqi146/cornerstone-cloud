@@ -10,6 +10,7 @@ import com.space.cornerstone.framework.core.enums.OperationLogType;
 import com.space.cornerstone.framework.core.validator.groups.Add;
 import com.space.cornerstone.framework.core.validator.groups.Update;
 import com.space.cornerstone.system.domain.entity.SysDept;
+import com.space.cornerstone.system.domain.entity.SysMenu;
 import com.space.cornerstone.system.domain.vo.SysDeptTreeVo;
 import com.space.cornerstone.system.service.SysDeptService;
 import lombok.RequiredArgsConstructor;
@@ -55,6 +56,22 @@ public class SysDeptController extends BaseController {
         return ReturnModel.ok(list.stream().map(SysDeptTreeVo::convert).collect(Collectors.toSet()));
     }
 
+
+    /**
+     * 查询部门详情
+     *
+     * @author cqmike
+     * @param id
+     * @since 1.0.0
+     * @return
+     */
+    @Log(name = "查询部门详情", type = OperationLogType.QUERY)
+    @PostMapping("/get/{id}")
+    public ReturnModel<SysDept> get(@PathVariable("id") Long id) {
+        return ReturnModel.ok(sysDeptService.getById(id));
+    }
+
+
     /**
      * 新增部门
      *
@@ -70,6 +87,7 @@ public class SysDeptController extends BaseController {
         return ReturnModel.ok();
     }
 
+
     /**
      * 编辑部门
      *
@@ -84,6 +102,7 @@ public class SysDeptController extends BaseController {
         sysDeptService.updateDept(sysDept);
         return ReturnModel.ok();
     }
+
 
     /**
      * 删除部门

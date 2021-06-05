@@ -55,7 +55,7 @@ public class LoginController extends BaseController {
      * @since 2021/5/31 15:39
      * @return : com.space.cornerstone.framework.core.domain.model.ReturnModel<com.space.cornerstone.system.domain.vo.UserVo>
      */
-    @Log(name = "查询用户权限信息", type = OperationLogType.query)
+    @Log(name = "查询用户权限信息", type = OperationLogType.QUERY)
     @GetMapping("/getAuthUserInfo")
     public ReturnModel<UserVo> getAuthUserInfo(@NotNull Long userId) {
         return ReturnModel.ok(sysUserService.findAuthInfoByUserId(userId));

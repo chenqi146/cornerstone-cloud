@@ -10,6 +10,7 @@ import com.space.cornerstone.framework.core.enums.OperationLogType;
 import com.space.cornerstone.framework.core.validator.groups.Add;
 import com.space.cornerstone.framework.core.validator.groups.Update;
 import com.space.cornerstone.system.domain.entity.SysMenu;
+import com.space.cornerstone.system.domain.entity.SysRole;
 import com.space.cornerstone.system.domain.vo.SysMenuTreeVo;
 import com.space.cornerstone.system.service.SysMenuService;
 import lombok.RequiredArgsConstructor;
@@ -54,6 +55,22 @@ public class SysMenuController extends BaseController {
         final List<SysMenu> list = sysMenuService.list(query);
         return ReturnModel.ok(list.stream().map(SysMenuTreeVo::convert).collect(Collectors.toSet()));
     }
+
+
+    /**
+     * 查询菜单详情
+     *
+     * @author cqmike
+     * @param id
+     * @since 1.0.0
+     * @return
+     */
+    @Log(name = "查询菜单详情", type = OperationLogType.QUERY)
+    @PostMapping("/get/{id}")
+    public ReturnModel<SysMenu> get(@PathVariable("id") Long id) {
+        return ReturnModel.ok(sysMenuService.getById(id));
+    }
+
 
     /**
      * 新增菜单

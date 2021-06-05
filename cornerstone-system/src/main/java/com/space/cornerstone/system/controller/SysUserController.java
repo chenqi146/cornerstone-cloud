@@ -30,7 +30,6 @@ import org.springframework.web.bind.annotation.*;
 public class SysUserController extends BaseController {
 
     private final SysUserService sysUserService;
-    private final SysRoleService sysRoleService;
 
     /**
      * 分页获取用户列表
@@ -60,6 +59,19 @@ public class SysUserController extends BaseController {
     public ReturnModel<Void> saveUser(@Validated(Add.class) @RequestBody SysUser sysUser) {
         sysUserService.saveSysUser(sysUser);
         return ReturnModel.ok();
+    }
+    /**
+     * 新增用户
+     *
+     * @param username
+     * @return : com.space.cornerstone.framework.core.domain.model.ReturnModel<java.lang.Void>
+     * @author cqmike
+     * @since 2021/6/3 11:18
+     */
+    @Log(name = "查询用户详情", type = OperationLogType.QUERY)
+    @PostMapping("/get/{username}")
+    public ReturnModel<SysUser> get(@PathVariable("username") String username) {
+        return ReturnModel.ok(sysUserService.getByUsername(username).setPassword(null));
     }
 
     /**
@@ -91,4 +103,22 @@ public class SysUserController extends BaseController {
         sysUserService.deleteById(id);
         return ReturnModel.ok();
     }
+
+
+    /**
+     * 重置密码
+     *
+     * @author cqmike
+     * @param id
+     * @param newPassword
+     * @since 1.0.0
+     * @return
+     */
+    @Log(name = "重置密码", type = OperationLogType.UPDATE)
+    @DeleteMapping("/resetPassword")
+    public ReturnModel<Void> resetPassword(Long id, String newPassword) {
+        sysUserService.resetPassword(id, newPassword);
+        return ReturnModel.ok();
+    }
+
 }
