@@ -17,6 +17,7 @@ import { LoginComponent } from './routes/auth/login/login.component';
 import { MatCardModule } from '@angular/material/card';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './material.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 // Required for AOT compilation
@@ -32,6 +33,7 @@ export function TranslateHttpLoaderFactory(http: HttpClient): TranslateHttpLoade
   imports: [
     LayoutModule,
     AuthRoutingModule,
+    FlexLayoutModule,
     BrowserModule,
     AppRoutingModule,
     RouterModule,

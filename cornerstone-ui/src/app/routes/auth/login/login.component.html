@@ -1,13 +1,42 @@
-<p>sadasddd</p>
-<div class="login-container w-full h-full" fxLayout="row wrap">
-  <p>ssadasd</p>
-  <mat-card>
-    <mat-card-title>{{'login.title' | translate}}</mat-card-title>
-    <form [formGroup]="loginForm">
+<div class="w-full h-full" fxLayout="row wrap">
+  <mat-card class="mat-elevation-z4 m-auto" style="max-width: 380px;">
+    <mat-card-title class="text-center m-b-24">{{'login.title' | translate}}</mat-card-title>
+    <form class="form-field-full" [formGroup]="loginForm">
 
       <mat-form-field appearance="outline">
+        <mat-label>{{'login.username' | translate}}: admin</mat-label>
+        <input matInput placeholder="admin" formControlName="username" required>
+        <mat-error *ngIf="username?.invalid">
+          <span *ngIf="username?.errors?.required">
+            {{'login.please_enter' | translate}} <strong>admin</strong>
+          </span>
 
+          <span *ngIf="username?.errors?.remote">
+            {{ username?.errors?.remote }}
+          </span>
+        </mat-error>
       </mat-form-field>
+
+
+      <mat-form-field appearance="outline" fxLayout="row">
+        <mat-label>{{'login.password' | translate}}: admin</mat-label>
+        <input matInput placeholder="admin" type="password"
+               formControlName="password" required>
+        <mat-error *ngIf="password?.invalid">
+          <span *ngIf="password?.errors?.required">
+            {{'login.please_enter' | translate}} <strong>admin</strong>
+          </span>
+
+          <span *ngIf="password?.errors?.remote">
+            {{ password?.errors?.remote }}
+          </span>
+        </mat-error>
+      </mat-form-field>
+
+
+      <button class="w-full" mat-raised-button color="primary"
+              [disabled]="loginForm.invalid"
+              (click)="login()">{{'login.login' | translate}}</button>
     </form>
   </mat-card>
 </div>
