@@ -18,13 +18,16 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "ngx-build-plus:browser",
+          "builder": "@angular-builders/custom-webpack:browser",
           "options": {
             "outputPath": "dist/cornerstone-ui",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
+            "customWebpackConfig": {
+              "path": "webpack.config.js"
+            },
             "aot": true,
             "assets": [
               "src/favicon.ico",
@@ -67,7 +70,7 @@
           }
         },
         "serve": {
-          "builder": "ngx-build-plus:dev-server",
+          "builder": "@angular-builders/custom-webpack:dev-server",
           "options": {
             "browserTarget": "cornerstone-ui:build"
           },
@@ -84,11 +87,14 @@
           }
         },
         "test": {
-          "builder": "ngx-build-plus:karma",
+          "builder": "@angular-builders/custom-webpack:browser",
           "options": {
             "main": "src/test.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
+            "customWebpackConfig": {
+              "path": "webpack.config.js"
+            },
             "karmaConfig": "karma.conf.js",
             "assets": [
               "src/favicon.ico",
