@@ -1,6 +1,10 @@
 .auth-container {
+  position: relative;
   display: flex;
   justify-content: center;
+  min-height: 100%;
   padding: 16px;
   background-color: white;
+
+  background-size: 60px 60px;
 }

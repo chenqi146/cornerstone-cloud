@@ -1,5 +1,9 @@
 {
   "login": {
-    "title": "欢迎回来!"
+    "title": "欢迎回来!",
+    "username": "用户名",
+    "password": "密码",
+    "login": "登录",
+    "please_enter": "请输入"
   }
 }
