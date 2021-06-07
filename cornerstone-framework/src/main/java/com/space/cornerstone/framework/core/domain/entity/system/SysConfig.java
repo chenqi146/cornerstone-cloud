@@ -4,8 +4,10 @@ import java.util.Date;
 
 import com.space.cornerstone.framework.core.domain.entity.LocalEntity;
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 @Data
+@Accessors(chain = true)
 public class SysConfig extends LocalEntity {
     private static final long serialVersionUID = 4183757717870188840L;
     /**

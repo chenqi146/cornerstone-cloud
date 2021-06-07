@@ -54,5 +54,6 @@ public final class Constant {
      * 字典缓存前缀
      */
     public static final String DICT = "DICT:";
+    public static final String CONFIG = "CONFIG:";
 
 }
