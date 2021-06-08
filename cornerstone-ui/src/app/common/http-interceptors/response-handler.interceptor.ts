@@ -23,7 +23,7 @@ export class ResponseHandlerInterceptor implements HttpInterceptor {
 
         switch (event.body.status) {
           case 200: {
-            return event.clone({ body: event.body.data });
+            return event.clone({ body: event.body });
             break;
           }
           default:

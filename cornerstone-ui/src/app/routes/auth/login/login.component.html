@@ -34,6 +34,23 @@
         </mat-error>
       </mat-form-field>
 
+      <div fxLayout="row">
+        <mat-form-field appearance="outline" style="vertical-align:middle">
+          <mat-label>{{'login.captchaCode' | translate}}:</mat-label>
+          <input matInput placeholder="captchaCode" formControlName="captchaCode" required>
+          <mat-error *ngIf="captchaCode?.invalid">
+          <span *ngIf="captchaCode?.errors?.required">
+            {{'login.please_enter' | translate}} <strong></strong>
+          </span>
+
+            <span *ngIf="captchaCode?.errors?.remote">
+            {{ captchaCode?.errors?.remote }}
+          </span>
+          </mat-error>
+        </mat-form-field>
+        <img class="m-y-3" style="vertical-align:middle; width: 120px; height: 50px" [src]="'data:image/jpg;base64,' + captchaVo?.imgBase64" title="图片">
+      </div>
+
 
       <button class="w-full" mat-raised-button color="primary"
               [disabled]="loginForm.invalid"

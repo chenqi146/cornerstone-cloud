@@ -1,15 +1,14 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { TranslateModule } from '@ngx-translate/core';
 import { MaterialModule } from '../../material.module';
+import { LoginComponent } from './login/login.component';
+import { AuthRoutingModule } from './auth-routing.module';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [LoginComponent],
   imports: [
     MaterialModule,
-    CommonModule,
-    TranslateModule
+    AuthRoutingModule
   ]
 })
 export class AuthModule {

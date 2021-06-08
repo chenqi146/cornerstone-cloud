@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { DataService } from './service/data.service';
 
 
 @Component({
@@ -10,7 +9,7 @@ export class AppComponent {
   title = 'cornerstone-ui';
 
 
-  constructor(public dataService: DataService) {
+  constructor() {
   }
 
 }
