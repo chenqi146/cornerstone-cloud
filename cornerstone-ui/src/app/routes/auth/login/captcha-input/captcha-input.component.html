@@ -1,0 +1,15 @@
+<div>
+  <mat-form-field appearance="outline">
+    <input matInput placeholder="captchaCode" formControlName="captchaCode" required>
+    <mat-error *ngIf="captchaCode?.invalid">
+          <span *ngIf="captchaCode?.errors?.required">
+            {{'login.please_enter' | translate}} <strong></strong>
+          </span>
+
+      <span *ngIf="captchaCode?.errors?.remote">
+            {{ captchaCode?.errors?.remote }}
+          </span>
+    </mat-error>
+  </mat-form-field>
+  <img src="" />
+</div>
