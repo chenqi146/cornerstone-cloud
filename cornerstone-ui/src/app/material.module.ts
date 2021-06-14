@@ -51,74 +51,64 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 const MODULES = [
-  A11yModule,
-  DragDropModule,
-  PortalModule,
-  ScrollingModule,
-  CdkStepperModule,
-  CdkTableModule,
-  CdkTreeModule,
-  MatAutocompleteModule,
-  MatBadgeModule,
-  MatBottomSheetModule,
-  MatButtonModule,
-  MatButtonToggleModule,
-  MatCardModule,
-  MatCheckboxModule,
-  MatChipsModule,
-  MatStepperModule,
-  MatDatepickerModule,
-  MatMomentDateModule,
-  MatDialogModule,
-  MatDividerModule,
-  MatExpansionModule,
-  MatGridListModule,
-  MatIconModule,
-  MatInputModule,
-  MatListModule,
-  MatMenuModule,
-  MatNativeDateModule,
-  MatPaginatorModule,
-  MatProgressBarModule,
-  MatProgressSpinnerModule,
-  MatRadioModule,
-  MatRippleModule,
-  MatSelectModule,
-  MatSidenavModule,
-  MatSliderModule,
-  MatSlideToggleModule,
-  MatSnackBarModule,
-  MatSortModule,
-  MatTableModule,
-  MatTabsModule,
-  MatToolbarModule,
-  MatTooltipModule,
-  MatTreeModule,
-  MatMomentDatetimeModule,
-  MatDatetimepickerModule,
-  TranslateModule,
-  ReactiveFormsModule
+    A11yModule,
+    DragDropModule,
+    PortalModule,
+    ScrollingModule,
+    CdkStepperModule,
+    CdkTableModule,
+    CdkTreeModule,
+    MatAutocompleteModule,
+    MatBadgeModule,
+    MatBottomSheetModule,
+    MatButtonModule,
+    MatButtonToggleModule,
+    MatCardModule,
+    MatCheckboxModule,
+    MatChipsModule,
+    MatStepperModule,
+    MatDatepickerModule,
+    MatMomentDateModule,
+    MatDialogModule,
+    MatDividerModule,
+    MatExpansionModule,
+    MatGridListModule,
+    MatIconModule,
+    MatInputModule,
+    MatListModule,
+    MatMenuModule,
+    MatNativeDateModule,
+    MatPaginatorModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
+    MatRadioModule,
+    MatRippleModule,
+    MatSelectModule,
+    MatSidenavModule,
+    MatSliderModule,
+    MatSlideToggleModule,
+    MatFormFieldModule,
+    MatSnackBarModule,
+    MatSortModule,
+    MatTableModule,
+    MatTabsModule,
+    MatToolbarModule,
+    MatTooltipModule,
+    MatTreeModule,
+    MatMomentDatetimeModule,
+    MatDatetimepickerModule,
+    TranslateModule,
+    ReactiveFormsModule
 ];
 
-const COMMON = [
-  CommonModule,
-  FormsModule,
-  RouterModule,
-  ReactiveFormsModule,
-  FlexLayoutModule
-];
+const COMMON = [CommonModule, FormsModule, RouterModule, FlexLayoutModule];
 
 @NgModule({
-  imports: [
-    ...COMMON,
-    ...MODULES],
-  exports: [
-    ...COMMON,
-    ...MODULES
-  ],
-  providers: [],
+    imports: [...COMMON, ...MODULES],
+    exports: [...COMMON, ...MODULES],
+    providers: []
 })
-export class MaterialModule {
-}
+export class MaterialModule {}

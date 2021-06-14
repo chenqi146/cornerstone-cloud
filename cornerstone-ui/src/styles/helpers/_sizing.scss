@@ -3,17 +3,17 @@
 // Width & Height
 
 $utilities: map-merge(
-  (
-    'width': (
-      property: width,
-      class: w,
-      values: $sizes
+    (
+        'width': (
+            property: width,
+            class: w,
+            values: $sizes
+        ),
+        'height': (
+            property: height,
+            class: h,
+            values: $sizes
+        )
     ),
-    'height': (
-      property: height,
-      class: h,
-      values: $sizes
-    )
-  ),
-  $utilities
+    $utilities
 );

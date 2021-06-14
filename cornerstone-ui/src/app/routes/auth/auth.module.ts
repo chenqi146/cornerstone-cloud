@@ -1,15 +1,11 @@
 import { NgModule } from '@angular/core';
 import { MaterialModule } from '../../material.module';
-import { LoginComponent } from './login/login.component';
 import { AuthRoutingModule } from './auth-routing.module';
-
+import { CaptchaInputComponent } from './login/captcha-input/captcha-input.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
-  declarations: [LoginComponent],
-  imports: [
-    MaterialModule,
-    AuthRoutingModule
-  ]
+	declarations: [LoginComponent, CaptchaInputComponent],
+	imports: [MaterialModule, AuthRoutingModule],
 })
-export class AuthModule {
-}
+export class AuthModule {}

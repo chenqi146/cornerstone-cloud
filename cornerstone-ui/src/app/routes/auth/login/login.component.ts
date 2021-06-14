@@ -1,50 +1,46 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+	AbstractControl,
+	FormBuilder,
+	FormControl,
+	FormGroup,
+	Validators,
+} from '@angular/forms';
 import { AuthService, CaptchaVo } from '../../../service/auth/auth.service';
-import { map } from 'rxjs/operators';
+import { ConsoleLogger, Logger } from '@angular/compiler-cli/ngcc';
+import { NGXLogger } from 'ngx-logger';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+	selector: 'app-login',
+	templateUrl: './login.component.html',
+	styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
+	public loginForm: FormGroup;
 
-  loginForm: FormGroup;
-  captchaVo: CaptchaVo | undefined;
+	public constructor(
+		private formBuilder: FormBuilder,
+		private authService: AuthService,
+		private logger: NGXLogger
+	) {
+		this.loginForm = this.formBuilder.group({
+			username: ['', [Validators.required]],
+			password: ['', [Validators.required]],
+			captcha: new FormControl(''),
+		});
+	}
 
-  constructor(private formBuilder: FormBuilder,
-              private authService: AuthService) {
-    this.loginForm = this.formBuilder.group( {
-      username: ['', [Validators.required]],
-      password: ['', [Validators.required]],
-      captchaCode: ['', [Validators.required]],
-    });
-    this.authService.getCaptcha().subscribe(res => {
-      this.captchaVo = res.data;
+	public ngOnInit(): void {}
 
-      console.log(res.data);
-      console.log(this.captchaVo);
-    });
-  }
+	public get username(): AbstractControl | null {
+		return this.loginForm.get('username');
+	}
 
-  ngOnInit(): void {
-  }
+	public get password(): AbstractControl | null {
+		return this.loginForm.get('password');
+	}
 
-  get username(): AbstractControl | null {
-    return this.loginForm.get('username');
-  }
-
-  get password(): AbstractControl | null {
-    return this.loginForm.get('password');
-  }
-
-  get captchaCode(): AbstractControl | null {
-    return this.loginForm.get('captchaCode');
-  }
-
-  login(): void {
-    console.log('s');
-  }
-
+	public login(): void {
+		// todo 登录
+	}
 }

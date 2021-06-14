@@ -1,20 +1,20 @@
 // Material components style fix
 
 .mat-card {
-  margin-bottom: $gutter;
+    margin-bottom: $gutter;
 }
 
 .mat-accordion {
-  display: block;
-  margin-bottom: $gutter;
+    display: block;
+    margin-bottom: $gutter;
 }
 
 .mat-list-base {
-  position: relative;
+    position: relative;
 }
 
 .form-field-full {
-  .mat-form-field {
-    width: 100%;
-  }
+    .mat-form-field {
+        width: 100%;
+    }
 }

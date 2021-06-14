@@ -1,12 +1,10 @@
 @import '~@mat-datetimepicker/core/datetimepicker/datetimepicker-theme';
 
-
 @import './custom/table-theme';
 
 // Styles for the app that are based on the current theme.
 @mixin matero-admin-theme($theme) {
-  @include mat-datetimepicker-theme($theme);
+    @include mat-datetimepicker-theme($theme);
 
-
-  @include custom-table-theme($theme);
+    @include custom-table-theme($theme);
 }

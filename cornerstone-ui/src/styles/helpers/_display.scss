@@ -1,12 +1,12 @@
 // Display
 
 $utilities: map-merge(
-  (
-    'display': (
-      property: display,
-      class: d,
-      values: block inline-block inline flex inline-flex none
-    )
-  ),
-  $utilities
+    (
+        'display': (
+            property: display,
+            class: d,
+            values: block inline-block inline flex inline-flex none
+        )
+    ),
+    $utilities
 );

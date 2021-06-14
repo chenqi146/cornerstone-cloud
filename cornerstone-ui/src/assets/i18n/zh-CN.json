@@ -1,9 +1,10 @@
 {
-  "login": {
-    "title": "欢迎回来!",
-    "username": "用户名",
-    "password": "密码",
-    "login": "登录",
-    "please_enter": "请输入"
-  }
+    "login": {
+        "title": "欢迎回来!",
+        "username": "用户名",
+        "password": "密码",
+        "login": "登录",
+        "please_enter": "请输入",
+        "captchaCode": "验证码"
+    }
 }

@@ -1,15 +1,28 @@
-<div>
-  <mat-form-field appearance="outline">
-    <input matInput placeholder="captchaCode" formControlName="captchaCode" required>
-    <mat-error *ngIf="captchaCode?.invalid">
-          <span *ngIf="captchaCode?.errors?.required">
-            {{'login.please_enter' | translate}} <strong></strong>
-          </span>
+<div
+    role="group"
+    class="captcha-container"
+    [attr.aria-labelledby]="formField?.getLabelId()"
+    [formGroup]="formGroup"
+>
+    <input
+        matInput
+        class="captcha-input-element"
+        (input)="_input()"
+        formControlName="captchaCode"
+        #captchaCode
+    />
+    <!--  <mat-error *ngIf="captchaCode?.invalid">-->
+    <!--        <span *ngIf="captchaCode?.errors?.required">-->
+    <!--          {{'login.please_enter' | translate}} <strong></strong>-->
+    <!--        </span>-->
 
-      <span *ngIf="captchaCode?.errors?.remote">
-            {{ captchaCode?.errors?.remote }}
-          </span>
-    </mat-error>
-  </mat-form-field>
-  <img src="" />
+    <!--    <span *ngIf="captchaCode?.errors?.remote">-->
+    <!--          {{ captchaCode?.errors?.remote }}-->
+    <!--        </span>-->
+    <!--  </mat-error>-->
+
+    <img (click)="refreshCaptcha()"
+        [src]="'data:image/jpg;base64,' + captchaVoField?.imgBase64"
+        style="width: 140px; height: 50px"
+    />
 </div>
